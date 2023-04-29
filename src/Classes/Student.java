@@ -1,0 +1,261 @@
+package Classes;
+
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
+
+
+public class Student {
+    private String name;
+    private String email;
+    private String password;
+    private String id;
+    private int borrowedBooks;
+    private final int maximumNumberOfBooksBorrowed = 5;
+    private int fines;
+    private ArrayList<Book> borrowedBooksList = new ArrayList<>();
+    private ArrayList<Book> lostBookArrayList = new ArrayList<>();
+    private ArrayList<Book> returnedBookArrayList = new ArrayList<>();
+
+    public Student() {
+    }
+
+    public Student(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.id = generateId();
+    }
+
+    public Student(String name, String email, String password, String id, int borrowedBooks, ArrayList<Book> borrowedBooksList, ArrayList<Book> lostBookArrayList, ArrayList<Book> returnedBookArrayList, int fines) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.id = id;
+        this.borrowedBooks = borrowedBooks;
+        this.borrowedBooksList = borrowedBooksList;
+        this.lostBookArrayList = lostBookArrayList;
+        this.returnedBookArrayList = returnedBookArrayList;
+        this.fines = fines;
+    }
+
+    // Getters
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public int getBorrowedBooks() {
+        return borrowedBooks;
+    }
+
+    public int getMaximumNumberOfBooksBorrowed() {
+        return maximumNumberOfBooksBorrowed;
+    }
+
+    public int getFines() {
+        return fines;
+    }
+
+    public ArrayList<Book> getBorrowedBooksList() {
+        return borrowedBooksList;
+    }
+
+    public ArrayList<Book> getLostBookArrayList() {
+        return lostBookArrayList;
+    }
+
+    public ArrayList<Book> getReturnedBookArrayList() {
+        return returnedBookArrayList;
+    }
+
+    // Setters
+
+    public void setBorrowedBooks(int borrowedBooks) {
+        this.borrowedBooks = borrowedBooks;
+    }
+
+    // Methods
+    public Object searchBookByISPN(int ISBN) {
+        for (Book value : borrowedBooksList) {
+            if (value.getISBN() == ISBN) {
+                return value;
+            }
+        }
+        return "Not Available";
+    }
+
+    public void presentBorrowedBooks() {
+        System.out.println("Your Borrowed Books is :");
+        for (int i = 0; i < borrowedBooksList.size(); i++) {
+            System.out.println((i + 1) + "." + borrowedBooksList.get(i));
+        }
+    }
+
+    public void presentLostBooks() {
+        System.out.println("Your Lost Books is :");
+        for (int i = 0; i < lostBookArrayList.size(); i++) {
+            System.out.println((i + 1) + "." + lostBookArrayList.get(i));
+        }
+    }
+
+    public void presentReturnedBooks() {
+        System.out.println("Your Returned Books is :");
+        for (int i = 0; i < returnedBookArrayList.size(); i++) {
+            System.out.println((i + 1) + "." + returnedBookArrayList.get(i));
+        }
+    }
+
+    public void addToBorrowedBooksList(Book book) {
+        borrowedBooksList.add(book);
+        borrowedBooks++;
+    }
+    public void addToReturnBooksList(Book book) {
+        returnedBookArrayList.add(book);
+        borrowedBooks--;
+        borrowedBooksList.remove(book);
+    }
+
+    public static void BorrowBook(Student student, Library library, Book book) {
+        if (student.getBorrowedBooks() < student.maximumNumberOfBooksBorrowed && book.getNumOfCopies() > 0) {
+            if (library.searchBookByISPN(book.getISBN()) instanceof Book) {
+                student.addToBorrowedBooksList(book);
+                library.addToBorrowedBooksList(book);
+                book.setNumOfCopies(book.getNumOfCopies() - 1);
+                student.setBorrowedBooks(student.getBorrowedBooks() + 1);
+            } else System.out.println("Sorry the Book isn't available right now.");
+        } else System.out.println("Sorry the Book isn't available right now.");
+    }
+
+    public static void returnBook(Student student, Library library, Book book) {
+        if (student.searchBookByISPN(book.getISBN()) instanceof Book) {
+            student.addToReturnBooksList(book);
+            library.returnBook(book);
+            book.setNumOfCopies(book.getNumOfCopies() + 1);
+            student.setBorrowedBooks(student.getBorrowedBooks() - 1);
+        } else System.out.println("That book isn't with you.");
+    }
+
+    private String generateId() {
+        Random random = new Random();
+        return "SD" + String.format("%04d", random.nextInt(10000));
+    }
+
+    public static void saveStudentToFile(Student student) {
+        try {
+            FileWriter writer = new FileWriter("Students.txt", true);
+            writer.write(student.saveStyle());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<Student> loadStudentsFromFile() {
+        ArrayList<Student> students = new ArrayList<>();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("Students.txt"));
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split("/");
+
+                ArrayList<Book> borrowedBooksList = new ArrayList<>();
+                parts[6] = parts[6].replace("[", "").replace("]", "");
+                if (!parts[6].equals("")) {
+                    String[] borrowedBooks = parts[6].split("\\),");
+                    for (int i = 0; i < borrowedBooks.length; i++) {
+                        borrowedBooks[i] = borrowedBooks[i].replace("(", "");
+                        borrowedBooks[i] = borrowedBooks[i].replace(")", "");
+                    }
+                    for (String borrowedBook : borrowedBooks) {
+                        String[] bookParts = borrowedBook.split(",");
+                        Book book = new Book(bookParts[0], bookParts[1], Integer.parseInt(bookParts[2]), Date.fromStringtoDate(bookParts[3]), Boolean.getBoolean(bookParts[4]), Integer.parseInt(bookParts[5]), Date.fromStringtoDate(bookParts[6]));
+                        borrowedBooksList.add(book);
+                    }
+                }
+
+                ArrayList<Book> lostBookArrayList = new ArrayList<>();
+                parts[7] = parts[7].replace("[", "").replace("]", "");
+                if (!parts[7].equals("")) {
+                    String[] lostBooks = parts[7].split("\\),");
+                    for (int i = 0; i < lostBooks.length; i++) {
+                        lostBooks[i] = lostBooks[i].replace("(", "");
+                        lostBooks[i] = lostBooks[i].replace(")", "");
+                    }
+                    for (String lostBook : lostBooks) {
+                        String[] bookParts = lostBook.split(",");
+                        Book book = new Book(bookParts[0], bookParts[1], Integer.parseInt(bookParts[2]), Date.fromStringtoDate(bookParts[3]), Boolean.getBoolean(bookParts[4]), Integer.parseInt(bookParts[5]), Date.fromStringtoDate(bookParts[6]));
+                        lostBookArrayList.add(book);
+                    }
+                }
+
+                ArrayList<Book> returnedBookArrayList = new ArrayList<>();
+                parts[8] = parts[8].replace("[", "").replace("]", "");
+                if (!parts[8].equals("")) {
+                    String[] returnedBooks = parts[8].split("\\),");
+                    for (int i = 0; i < returnedBooks.length; i++) {
+                        returnedBooks[i] = returnedBooks[i].replace("(", "");
+                        returnedBooks[i] = returnedBooks[i].replace(")", "");
+                    }
+                    for (String returnedBook : returnedBooks) {
+                        String[] bookParts = returnedBook.split(",");
+                        Book book = new Book(bookParts[0], bookParts[1], Integer.parseInt(bookParts[2]), Date.fromStringtoDate(bookParts[3]), Boolean.getBoolean(bookParts[4]), Integer.parseInt(bookParts[5]), Date.fromStringtoDate(bookParts[6]));
+                        returnedBookArrayList.add(book);
+                    }
+                }
+
+                Student student = new Student(parts[2], parts[0], parts[1], parts[3], Integer.parseInt(parts[4]), borrowedBooksList, lostBookArrayList, returnedBookArrayList, Integer.parseInt(parts[9]));
+
+                students.add(student);
+            }
+            br.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return students;
+    }
+
+
+    public String saveStyle() {
+        return email + "/" +
+                password + "/" +
+                name + "/" +
+                id + "/" +
+                borrowedBooks + "/" +
+                maximumNumberOfBooksBorrowed + "/" +
+                borrowedBooksList.toString() + "/" +
+                lostBookArrayList.toString() + "/" +
+                returnedBookArrayList.toString() + "/" +
+                fines + "\n";
+    }
+
+    @Override
+    public String toString() {
+        return name + "," +
+                id + "," +
+                email + "," +
+                password + "," +
+                borrowedBooks + "," +
+                maximumNumberOfBooksBorrowed + "," +
+                borrowedBooksList.toString() + "," +
+                lostBookArrayList.toString() + "," +
+                returnedBookArrayList.toString() + "," +
+                fines + "\n";
+    }
+}
