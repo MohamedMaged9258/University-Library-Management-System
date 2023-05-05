@@ -5,14 +5,14 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Student> students = Student.loadStudentsFromFile();
+        ArrayList<Student> studentArrayList = Student.loadStudentsFromFile();
         ArrayList<Staff> staffArrayList = Staff.loadStaffFromFile();
         ArrayList<Book> bookArrayList = Book.loadBooksFromFile();
         ArrayList<Book> lostBookArrayList = Book.loadLostBooksFromFile();
         ArrayList<Book> borrowedBookArrayList = Book.loadBorrowedBooksFromFile();
         Student student = new Student();
         Staff staff = new Staff();
-        Library library = new Library(students, staffArrayList, bookArrayList, lostBookArrayList, borrowedBookArrayList);
+        Library library = new Library(studentArrayList, staffArrayList, bookArrayList, lostBookArrayList, borrowedBookArrayList);
 
 
         Scanner scanner = new Scanner(System.in);
@@ -23,12 +23,11 @@ public class Main {
         int x = scanner.nextInt();
         scanner.nextLine();
         if (x == 1) {
-            String user = sign_in(students, staffArrayList);
+            String user = sign_in(studentArrayList, staffArrayList);
             String s = user.charAt(0) + String.valueOf(user.charAt(1));
             if (s.equals("SD")) {
                 int temp = Integer.parseInt(user.split("D")[1]);
-                student = students.get(temp);
-                x = 1;
+                student = studentArrayList.get(temp);
             } else if (s.equals("ST")) {
                 int temp = Integer.parseInt(user.split("T")[1]);
                 staff = staffArrayList.get(temp);
@@ -41,14 +40,13 @@ public class Main {
                 x = 1;
             } else if (user instanceof Staff) {
                 staff = (Staff) user;
-                x = 2;
             }
         }
 
         boolean running = true;
         if (x == 1) {
             System.out.println(student);
-            while (running){
+            while (running) {
                 System.out.println("""
                         \n
                         0.Quit
@@ -59,21 +57,28 @@ public class Main {
                         """);
                 x = scanner.nextInt();
                 switch (x) {
-                    case 0 -> running = false;
+                    case 0 -> {
+                        studentArrayList.remove(student);
+                        Student.saveStudentToFile(student, false);
+                        for (Student value : studentArrayList) {
+                            Student.saveStudentToFile(value, true);
+                        }
+                        Library.saveNewFiles(library);
+                        running = false;
+                    }
                     case 1 -> student.presentBorrowedBooks();
                     case 2 -> student.presentReturnedBooks();
-                    case 3 ->
-                    {
+                    case 3 -> {
                         library.presentBooks();
                         System.out.println("Please Choose Book Number.");
                         int y = scanner.nextInt();
-                        Student.BorrowBook(student,library,library.getBookArrayList().get(y - 1));
+                        Student.BorrowBook(student, library, library.getBookArrayList().get(y - 1));
                     }
                     case 4 -> {
                         student.presentBorrowedBooks();
                         System.out.println("Please Choose Book Number.");
                         int y = scanner.nextInt();
-                        Student.returnBook(student,library,student.getBorrowedBooksList().get(y - 1));
+                        Student.returnBook(student, library, student.getBorrowedBooksList().get(y - 1));
                     }
                 }
             }
@@ -85,9 +90,10 @@ public class Main {
         while (true) {
             System.out.print("Please Enter your ID: ");
             String Id = scanner.next();
-            System.out.print("Please Enter Your Password: ");
-            String password = scanner.next();
+
             if ((Id.charAt(0) + String.valueOf(Id.charAt(1))).equals("SD")) {
+                System.out.print("Please Enter Your Password: ");
+                String password = scanner.next();
                 for (int i = 0; i < students.size(); i++) {
                     if (students.get(i).getId().equals(Id)) {
                         if (students.get(i).getPassword().equals(password)) {
@@ -100,6 +106,8 @@ public class Main {
                     }
                 }
             } else if ((Id.charAt(0) + String.valueOf(Id.charAt(1))).equals("ST")) {
+                System.out.print("Please Enter Your Password: ");
+                String password = scanner.next();
                 for (int i = 0; i < staffArrayList.size(); i++) {
                     if (staffArrayList.get(i).getId().equals(Id)) {
                         if (staffArrayList.get(i).getPassword().equals(password)) {
@@ -111,7 +119,7 @@ public class Main {
                         System.out.println("Please Check your ID and try again.😊");
                     }
                 }
-            }
+            } else System.out.println("Please Check your ID and try again.😊");
         }
     }
 
@@ -141,7 +149,7 @@ public class Main {
                 String email = scanner.nextLine();
                 System.out.print("Please Enter Your Password: ");
                 String password = scanner.next();
-                Student.saveStudentToFile(new Student(name, email, password));
+                Student.saveStudentToFile(new Student(name, email, password), true);
                 return new Student(name, email, password);
             } else System.out.println("Please try again.");
         }

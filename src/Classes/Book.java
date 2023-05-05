@@ -10,10 +10,9 @@ public class Book {
     private String title;
     private String authorName;
     private int ISBN;
-    private int numOfCopies;
+    int numOfCopies;
     private Date publicationDate = new Date("0000", "00", "00");
     private Date dueDate = new Date("0000", "00", "00");
-    private boolean borrowed;
 
     public Book() {
     }
@@ -26,12 +25,11 @@ public class Book {
         this.numOfCopies = numOfCopies;
     }
 
-    public Book(String title, String authorName, int ISBN, Date publicationDate, boolean borrowed, int numOfCopies, Date dueDate) {
+    public Book(String title, String authorName, int ISBN, Date publicationDate,  int numOfCopies, Date dueDate) {
         this.title = title;
         this.authorName = authorName;
         this.ISBN = ISBN;
         this.publicationDate = publicationDate;
-        this.borrowed = borrowed;
         this.numOfCopies = numOfCopies;
         this.dueDate = dueDate;
     }
@@ -64,20 +62,6 @@ public class Book {
         return dueDate;
     }
 
-    public boolean isBorrowed() {
-        if (borrowed) {
-            System.out.println("The Classes.Book is Borrowed");
-            return true;
-        } else {
-            System.out.println("The Classes.Book is Available");
-            return false;
-        }
-    }
-
-    public void setBorrowed(boolean borrowed) {
-        this.borrowed = borrowed;
-    }
-
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
@@ -86,9 +70,9 @@ public class Book {
         this.numOfCopies = numOfCopies;
     }
 
-    public static void saveBookToFile(Book book) {
+    public static void saveBookToFile(Book book, boolean append) {
         try {
-            FileWriter writer = new FileWriter("Books.txt");
+            FileWriter writer = new FileWriter("Books.txt", append);
             writer.write(book.saveStyle() + "\n");
             writer.close();
         } catch (IOException e) {
@@ -107,7 +91,7 @@ public class Book {
                     parts[i] = parts[i].replace("(", "");
                     parts[i] = parts[i].replace(")", "");
                 }
-                Book book = new Book(parts[0], parts[1], Integer.parseInt(parts[2]), Date.fromStringtoDate(parts[3]), Boolean.getBoolean(parts[4]), Integer.parseInt(parts[5]), Date.fromStringtoDate(parts[6]));
+                Book book = new Book(parts[0], parts[1], Integer.parseInt(parts[2]), Date.fromStringtoDate(parts[3]), Integer.parseInt(parts[4]), Date.fromStringtoDate(parts[5]));
                 bookArrayList.add(book);
             }
             br.close();
@@ -117,9 +101,9 @@ public class Book {
         return bookArrayList;
     }
 
-    public static void saveLostBookToFile(Book book) {
+    public static void saveLostBookToFile(Book book, boolean append) {
         try {
-            FileWriter writer = new FileWriter("LostBooks.txt");
+            FileWriter writer = new FileWriter("LostBooks.txt", append);
             writer.write(book.saveStyle() + "\n");
             writer.close();
         } catch (IOException e) {
@@ -138,7 +122,7 @@ public class Book {
                     parts[i] = parts[i].replace("(", "");
                     parts[i] = parts[i].replace(")", "");
                 }
-                Book book = new Book(parts[0], parts[1], Integer.parseInt(parts[2]), Date.fromStringtoDate(parts[3]), Boolean.getBoolean(parts[4]), Integer.parseInt(parts[5]), Date.fromStringtoDate(parts[6]));
+                Book book = new Book(parts[0], parts[1], Integer.parseInt(parts[2]), Date.fromStringtoDate(parts[3]), Integer.parseInt(parts[4]), Date.fromStringtoDate(parts[5]));
                 bookArrayList.add(book);
             }
             br.close();
@@ -148,9 +132,9 @@ public class Book {
         return bookArrayList;
     }
 
-    public static void saveBorrowedBookToFile(Book book) {
+    public static void saveBorrowedBookToFile(Book book, boolean append) {
         try {
-            FileWriter writer = new FileWriter("BorrowedBooks.txt");
+            FileWriter writer = new FileWriter("BorrowedBooks.txt", append);
             writer.write(book.saveStyle() + "\n");
             writer.close();
         } catch (IOException e) {
@@ -169,7 +153,7 @@ public class Book {
                     parts[i] = parts[i].replace("(", "");
                     parts[i] = parts[i].replace(")", "");
                 }
-                Book book = new Book(parts[0], parts[1], Integer.parseInt(parts[2]), Date.fromStringtoDate(parts[3]), Boolean.getBoolean(parts[4]), Integer.parseInt(parts[5]), Date.fromStringtoDate(parts[6]));
+                Book book = new Book(parts[0], parts[1], Integer.parseInt(parts[2]), Date.fromStringtoDate(parts[3]), Integer.parseInt(parts[4]), Date.fromStringtoDate(parts[5]));
                 bookArrayList.add(book);
             }
             br.close();
@@ -185,7 +169,6 @@ public class Book {
                 "," + authorName +
                 "," + ISBN +
                 "," + publicationDate.saveStyle() +
-                "," + borrowed +
                 "," + numOfCopies +
                 "," + dueDate.saveStyle() +
                 ')';
@@ -193,12 +176,24 @@ public class Book {
 
     @Override
     public String toString() {
-        return title +
+        return "(" +
+                title +
                 "," + authorName +
                 "," + ISBN +
-                "," + publicationDate +
-                "," + borrowed +
+                "," + publicationDate.saveStyle() +
                 "," + numOfCopies +
-                "," + dueDate;
+                "," + dueDate.saveStyle() +
+                ')';
     }
+
+//    @Override
+//    public String toString() {
+//        return title +
+//                "," + authorName +
+//                "," + ISBN +
+//                "," + publicationDate +
+//                "," + borrowed +
+//                "," + numOfCopies +
+//                "," + dueDate;
+//    }
 }

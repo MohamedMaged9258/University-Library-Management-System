@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-
 public class Student {
     private String name;
     private String email;
@@ -123,9 +122,11 @@ public class Student {
     }
 
     public void addToBorrowedBooksList(Book book) {
+        book.setDueDate(Date.setDueDate());
         borrowedBooksList.add(book);
         borrowedBooks++;
     }
+
     public void addToReturnBooksList(Book book) {
         returnedBookArrayList.add(book);
         borrowedBooks--;
@@ -137,8 +138,6 @@ public class Student {
             if (library.searchBookByISPN(book.getISBN()) instanceof Book) {
                 student.addToBorrowedBooksList(book);
                 library.addToBorrowedBooksList(book);
-                book.setNumOfCopies(book.getNumOfCopies() - 1);
-                student.setBorrowedBooks(student.getBorrowedBooks() + 1);
             } else System.out.println("Sorry the Book isn't available right now.");
         } else System.out.println("Sorry the Book isn't available right now.");
     }
@@ -147,8 +146,6 @@ public class Student {
         if (student.searchBookByISPN(book.getISBN()) instanceof Book) {
             student.addToReturnBooksList(book);
             library.returnBook(book);
-            book.setNumOfCopies(book.getNumOfCopies() + 1);
-            student.setBorrowedBooks(student.getBorrowedBooks() - 1);
         } else System.out.println("That book isn't with you.");
     }
 
@@ -157,9 +154,9 @@ public class Student {
         return "SD" + String.format("%04d", random.nextInt(10000));
     }
 
-    public static void saveStudentToFile(Student student) {
+    public static void saveStudentToFile(Student student, boolean append) {
         try {
-            FileWriter writer = new FileWriter("Students.txt", true);
+            FileWriter writer = new FileWriter("Students.txt", append);
             writer.write(student.saveStyle());
             writer.close();
         } catch (IOException e) {
@@ -185,7 +182,7 @@ public class Student {
                     }
                     for (String borrowedBook : borrowedBooks) {
                         String[] bookParts = borrowedBook.split(",");
-                        Book book = new Book(bookParts[0], bookParts[1], Integer.parseInt(bookParts[2]), Date.fromStringtoDate(bookParts[3]), Boolean.getBoolean(bookParts[4]), Integer.parseInt(bookParts[5]), Date.fromStringtoDate(bookParts[6]));
+                        Book book = new Book(bookParts[0], bookParts[1], Integer.parseInt(bookParts[2]), Date.fromStringtoDate(bookParts[3]), Integer.parseInt(bookParts[4]), Date.fromStringtoDate(bookParts[5]));
                         borrowedBooksList.add(book);
                     }
                 }
@@ -200,7 +197,7 @@ public class Student {
                     }
                     for (String lostBook : lostBooks) {
                         String[] bookParts = lostBook.split(",");
-                        Book book = new Book(bookParts[0], bookParts[1], Integer.parseInt(bookParts[2]), Date.fromStringtoDate(bookParts[3]), Boolean.getBoolean(bookParts[4]), Integer.parseInt(bookParts[5]), Date.fromStringtoDate(bookParts[6]));
+                        Book book = new Book(bookParts[0], bookParts[1], Integer.parseInt(bookParts[2]), Date.fromStringtoDate(bookParts[3]), Integer.parseInt(bookParts[4]), Date.fromStringtoDate(bookParts[5]));
                         lostBookArrayList.add(book);
                     }
                 }
@@ -215,7 +212,7 @@ public class Student {
                     }
                     for (String returnedBook : returnedBooks) {
                         String[] bookParts = returnedBook.split(",");
-                        Book book = new Book(bookParts[0], bookParts[1], Integer.parseInt(bookParts[2]), Date.fromStringtoDate(bookParts[3]), Boolean.getBoolean(bookParts[4]), Integer.parseInt(bookParts[5]), Date.fromStringtoDate(bookParts[6]));
+                        Book book = new Book(bookParts[0], bookParts[1], Integer.parseInt(bookParts[2]), Date.fromStringtoDate(bookParts[3]), Integer.parseInt(bookParts[4]), Date.fromStringtoDate(bookParts[5]));
                         returnedBookArrayList.add(book);
                     }
                 }
