@@ -71,6 +71,18 @@ public class Date {
     public static Date resetDueDate(){
         return new Date("0000", "00", "00");
     }
+    public static boolean brokeDueDate(Date dueDate){
+        LocalDate currentDate = LocalDate.now();
+        int day = currentDate.getDayOfMonth();
+        int month = currentDate.getMonthValue();
+        int year = currentDate.getYear();
+        if (dueDate.getYear() <= year){
+            if (dueDate.getMonth() <= month){
+                return dueDate.getDay() <= day;
+            }
+        }
+        return false;
+    }
     public String saveStyle() {
         return year + month + day;
     }

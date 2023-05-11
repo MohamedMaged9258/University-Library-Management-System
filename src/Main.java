@@ -27,9 +27,11 @@ public class Main {
             if (s.equals("SD")) {
                 int temp = Integer.parseInt(user.split("D")[1]);
                 student = studentArrayList.get(temp);
+                studentArrayList.remove(studentArrayList.get(temp));
             } else if (s.equals("ST")) {
                 int temp = Integer.parseInt(user.split("T")[1]);
                 staff = staffArrayList.get(temp);
+                staffArrayList.remove(staffArrayList.get(temp));
                 x = 2;
             }
         } else if (x == 2) {
@@ -53,6 +55,8 @@ public class Main {
                         2.Your Returned Books
                         3.Borrow Book
                         4.Return Book
+                        5.Lost Book
+                        6.Show Fines
                         """);
                 x = scanner.nextInt();
                 switch (x) {
@@ -68,16 +72,24 @@ public class Main {
                     case 2 -> student.presentReturnedBooks();
                     case 3 -> {
                         library.presentBooks();
-                        System.out.println("Please Choose Book Number.");
+                        System.out.print("Please Choose Book Number: ");
                         int y = scanner.nextInt();
                         Student.BorrowBook(student, library, library.getBookArrayList().get(y - 1));
                     }
                     case 4 -> {
                         student.presentBorrowedBooks();
-                        System.out.println("Please Choose Book Number.");
+                        System.out.print("Please Choose Book Number: ");
                         int y = scanner.nextInt();
                         Student.returnBook(student, library, student.getBorrowedBooksList().get(y - 1));
                     }
+                    case 5 -> {
+                        student.presentBorrowedBooks();
+                        System.out.print("Please Choose Book Number: ");
+                        int y = scanner.nextInt();
+                        Student.lostBook(student, library, student.getBorrowedBooksList().get(y - 1));
+                    }
+                    case 6 -> System.out.println("You have to pay: " + student.getFines());
+                    default -> System.out.println("Please choose a number from the list.🤨");
                 }
             }
         }
@@ -88,7 +100,6 @@ public class Main {
         while (true) {
             System.out.print("Please Enter your ID: ");
             String Id = scanner.next();
-
             if ((Id.charAt(0) + String.valueOf(Id.charAt(1))).equals("SD")) {
                 System.out.print("Please Enter Your Password: ");
                 String password = scanner.next();
@@ -147,7 +158,6 @@ public class Main {
                 String email = scanner.nextLine();
                 System.out.print("Please Enter Your Password: ");
                 String password = scanner.next();
-                Student.saveStudentToFile(new Student(name, email, password));
                 return new Student(name, email, password);
             } else System.out.println("Please try again.");
         }

@@ -9,6 +9,9 @@ import java.util.ArrayList;
 public class Book {
     private String title;
     private String authorName;
+    private String studentId;
+    private String breakDueDate;
+    private String lost;
     private int ISBN;
     int numOfCopies;
     private Date publicationDate = new Date("0000", "00", "00");
@@ -16,20 +19,25 @@ public class Book {
 
     //Constructors
     public Book() {}
-    public Book(String title, String authorName, int ISBN, Date publicationDate, int numOfCopies) {
+    public Book(String title, String authorName, int ISBN, Date publicationDate, int numOfCopies, String breakDueDate, String lost) {
         this.title = title;
         this.authorName = authorName;
         this.ISBN = ISBN;
         this.publicationDate = publicationDate;
         this.numOfCopies = numOfCopies;
+        this.breakDueDate = breakDueDate;
+        this.lost = lost;
     }
-    public Book(String title, String authorName, int ISBN, Date publicationDate,  int numOfCopies, Date dueDate) {
+    public Book(String title, String authorName, int ISBN, Date publicationDate,  int numOfCopies, Date dueDate,String studentId, String breakDueDate, String lost) {
         this.title = title;
         this.authorName = authorName;
         this.ISBN = ISBN;
         this.publicationDate = publicationDate;
         this.numOfCopies = numOfCopies;
         this.dueDate = dueDate;
+        this.studentId = studentId;
+        this.breakDueDate = breakDueDate;
+        this.lost = lost;
     }
 
     //Getters
@@ -54,6 +62,15 @@ public class Book {
     public Date getDueDate() {
         return dueDate;
     }
+    public String getStudentId() {
+        return studentId;
+    }
+    public String getBreakDueDate() {
+        return breakDueDate;
+    }
+    public String getLost() {
+        return lost;
+    }
 
     //Setters
     public void setDueDate(Date dueDate) {
@@ -62,6 +79,10 @@ public class Book {
     public void setNumOfCopies(int numOfCopies) {
         this.numOfCopies = numOfCopies;
     }
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
+
 
     //Methods
     public static void saveBookToFile(Book book, boolean append) {
@@ -84,7 +105,7 @@ public class Book {
                     parts[i] = parts[i].replace("(", "");
                     parts[i] = parts[i].replace(")", "");
                 }
-                Book book = new Book(parts[0], parts[1], Integer.parseInt(parts[2]), Date.fromStringtoDate(parts[3]), Integer.parseInt(parts[4]), Date.fromStringtoDate(parts[5]));
+                Book book = new Book(parts[0], parts[1], Integer.parseInt(parts[2]), Date.fromStringtoDate(parts[3]), Integer.parseInt(parts[4]), Date.fromStringtoDate(parts[5]), parts[6], parts[7], parts[8]);
                 bookArrayList.add(book);
             }
             br.close();
@@ -116,7 +137,7 @@ public class Book {
                     parts[i] = parts[i].replace("(", "");
                     parts[i] = parts[i].replace(")", "");
                 }
-                Book book = new Book(parts[0], parts[1], Integer.parseInt(parts[2]), Date.fromStringtoDate(parts[3]), Integer.parseInt(parts[4]), Date.fromStringtoDate(parts[5]));
+                Book book = new Book(parts[0], parts[1], Integer.parseInt(parts[2]), Date.fromStringtoDate(parts[3]), Integer.parseInt(parts[4]), Date.fromStringtoDate(parts[5]), parts[6], parts[7], parts[8]);
                 bookArrayList.add(book);
             }
             br.close();
@@ -148,7 +169,7 @@ public class Book {
                     parts[i] = parts[i].replace("(", "");
                     parts[i] = parts[i].replace(")", "");
                 }
-                Book book = new Book(parts[0], parts[1], Integer.parseInt(parts[2]), Date.fromStringtoDate(parts[3]), Integer.parseInt(parts[4]), Date.fromStringtoDate(parts[5]));
+                Book book = new Book(parts[0], parts[1], Integer.parseInt(parts[2]), Date.fromStringtoDate(parts[3]), Integer.parseInt(parts[4]), Date.fromStringtoDate(parts[5]), parts[6], parts[7], parts[8]);
                 bookArrayList.add(book);
             }
             br.close();
@@ -169,6 +190,9 @@ public class Book {
                 "," + publicationDate.saveStyle() +
                 "," + numOfCopies +
                 "," + dueDate.saveStyle() +
+                "," + studentId +
+                "," + breakDueDate +
+                "," + lost +
                 ')';
     }
     @Override
@@ -180,6 +204,9 @@ public class Book {
                 "," + publicationDate.saveStyle() +
                 "," + numOfCopies +
                 "," + dueDate.saveStyle() +
+                "," + studentId +
+                "," + breakDueDate +
+                "," + lost +
                 ')';
     }
 }

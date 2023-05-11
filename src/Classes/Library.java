@@ -60,10 +60,12 @@ public class Library {
         }
         return "Not Available";
     }
-    public Object searchBorrowedBookByISPN(int ISBN) {
+    public Object searchBorrowedBookByStudentIdAndISBN(String studentId, int isbn) {
         for (Book value : borrowedBookArrayList) {
-            if (value.getISBN() == ISBN) {
-                return value;
+            if (value.getStudentId().equals(studentId)) {
+                if (value.getISBN() == isbn){
+                    return value;
+                }
             }
         }
         return "Not Available";
@@ -93,11 +95,10 @@ public class Library {
     public void returnBook(Book book) {
         if (searchBookByISPN(book.getISBN()) instanceof Book) {
             book = (Book) searchBookByISPN(book.getISBN());
-
         }
         bookArrayList.get(bookArrayList.indexOf(book)).numOfCopies++;
-        if (searchBorrowedBookByISPN(book.getISBN()) instanceof Book) {
-            book = (Book) searchBorrowedBookByISPN(book.getISBN());
+        if (searchBorrowedBookByStudentIdAndISBN(book.getStudentId(), book.getISBN()) instanceof Book) {
+            book = (Book) searchBorrowedBookByStudentIdAndISBN(book.getStudentId(), book.getISBN());
         }
         borrowedBookArrayList.remove(book);
     }
@@ -110,6 +111,7 @@ public class Library {
         }
         for (int i = 0; i < library.getBookArrayList().size(); i++) {
             library.getBookArrayList().get(i).setDueDate(Date.resetDueDate());
+            library.getBookArrayList().get(i).setStudentId("");
             Book.saveBookToFile(library.getBookArrayList().get(i), true);
         }
     }
