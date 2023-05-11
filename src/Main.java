@@ -14,7 +14,6 @@ public class Main {
         Staff staff = new Staff();
         Library library = new Library(studentArrayList, staffArrayList, bookArrayList, lostBookArrayList, borrowedBookArrayList);
 
-
         Scanner scanner = new Scanner(System.in);
         System.out.println("""
                 1.Sign in.
@@ -58,10 +57,9 @@ public class Main {
                 x = scanner.nextInt();
                 switch (x) {
                     case 0 -> {
-                        studentArrayList.remove(student);
-                        Student.saveStudentToFile(student, false);
+                        studentArrayList.add(student);
                         for (Student value : studentArrayList) {
-                            Student.saveStudentToFile(value, true);
+                            Student.saveStudentToFile(value);
                         }
                         Library.saveNewFiles(library);
                         running = false;
@@ -149,7 +147,7 @@ public class Main {
                 String email = scanner.nextLine();
                 System.out.print("Please Enter Your Password: ");
                 String password = scanner.next();
-                Student.saveStudentToFile(new Student(name, email, password), true);
+                Student.saveStudentToFile(new Student(name, email, password));
                 return new Student(name, email, password);
             } else System.out.println("Please try again.");
         }

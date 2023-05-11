@@ -1,6 +1,5 @@
 package Classes;
 
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -20,16 +19,14 @@ public class Student {
     private ArrayList<Book> lostBookArrayList = new ArrayList<>();
     private ArrayList<Book> returnedBookArrayList = new ArrayList<>();
 
-    public Student() {
-    }
-
+    //Constructors
+    public Student() {}
     public Student(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.id = generateId();
     }
-
     public Student(String name, String email, String password, String id, int borrowedBooks, ArrayList<Book> borrowedBooksList, ArrayList<Book> lostBookArrayList, ArrayList<Book> returnedBookArrayList, int fines) {
         this.name = name;
         this.email = email;
@@ -43,51 +40,35 @@ public class Student {
     }
 
     // Getters
-
     public String getName() {
         return name;
     }
-
     public String getEmail() {
         return email;
     }
-
     public String getPassword() {
         return password;
     }
-
     public String getId() {
         return id;
     }
-
     public int getBorrowedBooks() {
         return borrowedBooks;
     }
-
     public int getMaximumNumberOfBooksBorrowed() {
         return maximumNumberOfBooksBorrowed;
     }
-
     public int getFines() {
         return fines;
     }
-
     public ArrayList<Book> getBorrowedBooksList() {
         return borrowedBooksList;
     }
-
     public ArrayList<Book> getLostBookArrayList() {
         return lostBookArrayList;
     }
-
     public ArrayList<Book> getReturnedBookArrayList() {
         return returnedBookArrayList;
-    }
-
-    // Setters
-
-    public void setBorrowedBooks(int borrowedBooks) {
-        this.borrowedBooks = borrowedBooks;
     }
 
     // Methods
@@ -99,40 +80,34 @@ public class Student {
         }
         return "Not Available";
     }
-
     public void presentBorrowedBooks() {
         System.out.println("Your Borrowed Books is :");
         for (int i = 0; i < borrowedBooksList.size(); i++) {
             System.out.println((i + 1) + "." + borrowedBooksList.get(i));
         }
     }
-
     public void presentLostBooks() {
         System.out.println("Your Lost Books is :");
         for (int i = 0; i < lostBookArrayList.size(); i++) {
             System.out.println((i + 1) + "." + lostBookArrayList.get(i));
         }
     }
-
     public void presentReturnedBooks() {
         System.out.println("Your Returned Books is :");
         for (int i = 0; i < returnedBookArrayList.size(); i++) {
             System.out.println((i + 1) + "." + returnedBookArrayList.get(i));
         }
     }
-
     public void addToBorrowedBooksList(Book book) {
         book.setDueDate(Date.setDueDate());
         borrowedBooksList.add(book);
         borrowedBooks++;
     }
-
     public void addToReturnBooksList(Book book) {
         returnedBookArrayList.add(book);
         borrowedBooks--;
         borrowedBooksList.remove(book);
     }
-
     public static void BorrowBook(Student student, Library library, Book book) {
         if (student.getBorrowedBooks() < student.maximumNumberOfBooksBorrowed && book.getNumOfCopies() > 0) {
             if (library.searchBookByISPN(book.getISBN()) instanceof Book) {
@@ -141,29 +116,25 @@ public class Student {
             } else System.out.println("Sorry the Book isn't available right now.");
         } else System.out.println("Sorry the Book isn't available right now.");
     }
-
     public static void returnBook(Student student, Library library, Book book) {
         if (student.searchBookByISPN(book.getISBN()) instanceof Book) {
             student.addToReturnBooksList(book);
             library.returnBook(book);
         } else System.out.println("That book isn't with you.");
     }
-
     private String generateId() {
         Random random = new Random();
         return "SD" + String.format("%04d", random.nextInt(10000));
     }
-
-    public static void saveStudentToFile(Student student, boolean append) {
+    public static void saveStudentToFile(Student student) {
         try {
-            FileWriter writer = new FileWriter("Students.txt", append);
+            FileWriter writer = new FileWriter("Students.txt", true);
             writer.write(student.saveStyle());
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
     public static ArrayList<Student> loadStudentsFromFile() {
         ArrayList<Student> students = new ArrayList<>();
         try {
@@ -222,13 +193,14 @@ public class Student {
                 students.add(student);
             }
             br.close();
+            FileWriter writer = new FileWriter("Students.txt");
+            writer.write("");
+            writer.close();
         } catch (IOException e) {
             System.out.println(e);
         }
         return students;
     }
-
-
     public String saveStyle() {
         return email + "/" +
                 password + "/" +
@@ -241,7 +213,6 @@ public class Student {
                 returnedBookArrayList.toString() + "/" +
                 fines + "\n";
     }
-
     @Override
     public String toString() {
         return name + "," +

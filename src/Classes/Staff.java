@@ -13,9 +13,8 @@ public class Staff {
     private String password;
     private String id;
 
-    public Staff() {
-    }
-
+    //Constructors
+    public Staff() {}
     public Staff(String name, String email, String password) {
         this.name = name;
         this.email = email;
@@ -23,7 +22,6 @@ public class Staff {
         Random random = new Random();
         this.id = "ST" + String.format("%04d", random.nextInt(10000));
     }
-
     public Staff(String email, String password, String name, String id) {
         this.name = name;
         this.email = email;
@@ -31,21 +29,21 @@ public class Staff {
         this.id = id;
     }
 
+    //Getters
     public String getName() {
         return name;
     }
-
     public String getId() {
         return id;
     }
     public String getEmail() {
         return email;
     }
-
     public String getPassword() {
         return password;
     }
 
+    //Methods
     public static void saveStaffToFile(Staff staff) {
         try {
             FileWriter writer = new FileWriter("Staff.txt", true);
@@ -55,7 +53,6 @@ public class Staff {
             e.printStackTrace();
         }
     }
-
     public static ArrayList<Staff> loadStaffFromFile(){
         ArrayList<Staff> Staff = new ArrayList<>();
         try {
@@ -67,12 +64,14 @@ public class Staff {
                 Staff.add(staff);
             }
             br.close();
+            FileWriter writer = new FileWriter("Staff.txt");
+            writer.write("");
+            writer.close();
         }catch (IOException e){
             System.out.println(e);
         }
         return Staff;
     }
-
     @Override
     public String toString() {
         return name + "/" +

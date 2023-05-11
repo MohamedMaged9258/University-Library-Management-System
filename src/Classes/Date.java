@@ -23,11 +23,9 @@ public class Date {
     public int getYear() {
         return Integer.parseInt(year);
     }
-
     public int getMonth() {
         return Integer.parseInt(month);
     }
-
     public int getDay() {
         return Integer.parseInt(day);
     }
@@ -36,11 +34,9 @@ public class Date {
     public void setYear(String year) {
         this.year = year;
     }
-
     public void setMonth(String month) {
         this.month = month;
     }
-
     public void setDay(String day) {
         this.day = day;
     }
@@ -61,7 +57,6 @@ public class Date {
         }
         return new Date(tempYear.toString(), tempMonth.toString(), tempDay.toString());
     }
-
     public static Date setDueDate(){
         // Get the current date
         LocalDate currentDate = LocalDate.now().plusDays(14);
@@ -73,11 +68,9 @@ public class Date {
 
         return new Date(String.valueOf(year),String.valueOf(month),String.valueOf(day));
     }
-
     public static Date resetDueDate(){
         return new Date("0000", "00", "00");
     }
-
     public String saveStyle() {
         return year + month + day;
     }

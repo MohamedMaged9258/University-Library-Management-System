@@ -14,9 +14,8 @@ public class Book {
     private Date publicationDate = new Date("0000", "00", "00");
     private Date dueDate = new Date("0000", "00", "00");
 
-    public Book() {
-    }
-
+    //Constructors
+    public Book() {}
     public Book(String title, String authorName, int ISBN, Date publicationDate, int numOfCopies) {
         this.title = title;
         this.authorName = authorName;
@@ -24,7 +23,6 @@ public class Book {
         this.publicationDate = publicationDate;
         this.numOfCopies = numOfCopies;
     }
-
     public Book(String title, String authorName, int ISBN, Date publicationDate,  int numOfCopies, Date dueDate) {
         this.title = title;
         this.authorName = authorName;
@@ -34,42 +32,38 @@ public class Book {
         this.dueDate = dueDate;
     }
 
+    //Getters
     public String getTitle() {
         return title;
     }
-
     public String getAuthorName() {
         return authorName;
     }
-
     public void getDate() {
         System.out.println(publicationDate);
     }
-
     public int getNumOfCopies() {
         return numOfCopies;
     }
-
     public int getISBN() {
         return ISBN;
     }
-
     public Date getPublicationDate() {
         return publicationDate;
     }
-
     public Date getDueDate() {
         return dueDate;
     }
 
+    //Setters
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
-
     public void setNumOfCopies(int numOfCopies) {
         this.numOfCopies = numOfCopies;
     }
 
+    //Methods
     public static void saveBookToFile(Book book, boolean append) {
         try {
             FileWriter writer = new FileWriter("Books.txt", append);
@@ -79,7 +73,6 @@ public class Book {
             e.printStackTrace();
         }
     }
-
     public static ArrayList<Book> loadBooksFromFile() {
         ArrayList<Book> bookArrayList = new ArrayList<>();
         try {
@@ -95,12 +88,14 @@ public class Book {
                 bookArrayList.add(book);
             }
             br.close();
+            FileWriter writer = new FileWriter("Books.txt");
+            writer.write("");
+            writer.close();
         } catch (IOException e) {
             System.out.println(e);
         }
         return bookArrayList;
     }
-
     public static void saveLostBookToFile(Book book, boolean append) {
         try {
             FileWriter writer = new FileWriter("LostBooks.txt", append);
@@ -110,7 +105,6 @@ public class Book {
             e.printStackTrace();
         }
     }
-
     public static ArrayList<Book> loadLostBooksFromFile() {
         ArrayList<Book> bookArrayList = new ArrayList<>();
         try {
@@ -126,12 +120,14 @@ public class Book {
                 bookArrayList.add(book);
             }
             br.close();
+            FileWriter writer = new FileWriter("LostBooks.txt");
+            writer.write("");
+            writer.close();
         } catch (IOException e) {
             System.out.println(e);
         }
         return bookArrayList;
     }
-
     public static void saveBorrowedBookToFile(Book book, boolean append) {
         try {
             FileWriter writer = new FileWriter("BorrowedBooks.txt", append);
@@ -141,7 +137,6 @@ public class Book {
             e.printStackTrace();
         }
     }
-
     public static ArrayList<Book> loadBorrowedBooksFromFile() {
         ArrayList<Book> bookArrayList = new ArrayList<>();
         try {
@@ -157,12 +152,15 @@ public class Book {
                 bookArrayList.add(book);
             }
             br.close();
+            FileWriter writer = new FileWriter("BorrowedBooks.txt");
+            writer.write("");
+            writer.close();
+
         } catch (IOException e) {
             System.out.println(e);
         }
         return bookArrayList;
     }
-
     public String saveStyle() {
         return "(" +
                 title +
@@ -173,7 +171,6 @@ public class Book {
                 "," + dueDate.saveStyle() +
                 ')';
     }
-
     @Override
     public String toString() {
         return "(" +
@@ -185,15 +182,4 @@ public class Book {
                 "," + dueDate.saveStyle() +
                 ')';
     }
-
-//    @Override
-//    public String toString() {
-//        return title +
-//                "," + authorName +
-//                "," + ISBN +
-//                "," + publicationDate +
-//                "," + borrowed +
-//                "," + numOfCopies +
-//                "," + dueDate;
-//    }
 }
