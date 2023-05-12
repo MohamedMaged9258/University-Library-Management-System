@@ -1,6 +1,7 @@
 package Classes;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Date {
     private String year;
@@ -42,6 +43,19 @@ public class Date {
     }
 
     //Methods
+    public static Date enterDate(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Please Enter the Year of publication: ");
+        String year = scanner.next();
+        System.out.println();
+        System.out.print("Please Enter the Month of publication: ");
+        String month = scanner.next();
+        System.out.println();
+        System.out.print("Please Enter the Day of publication: ");
+        String day = scanner.next();
+        System.out.println();
+        return new Date(year, month, day);
+    }
     public static Date fromStringtoDate(String s){
         StringBuilder tempYear = new StringBuilder();
         StringBuilder tempMonth = new StringBuilder();

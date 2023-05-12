@@ -84,9 +84,9 @@ public class Student {
     }
 
     // Methods
-    public Object searchBookByISPN(int ISBN) {
+    public Object searchBookByISPN(String ISBN) {
         for (Book value : borrowedBooksList) {
-            if (value.getISBN() == ISBN) {
+            if (value.getISBN().equals(ISBN)) {
                 return value;
             }
         }
@@ -94,24 +94,40 @@ public class Student {
     }
 
     public void presentBorrowedBooks() {
-        System.out.println("Your Borrowed Books is :");
-        for (int i = 0; i < borrowedBooksList.size(); i++) {
-            System.out.println((i + 1) + "." + borrowedBooksList.get(i));
-        }
+        if (borrowedBooksList.size() != 0) {
+            System.out.println("Your Borrowed Books is :");
+            for (int i = 0; i < borrowedBooksList.size(); i++) {
+                System.out.println("Book " + (i + 1) + ": ");
+                System.out.println("Title: " + borrowedBooksList.get(i).getTitle());
+                System.out.println("Author Name: " + borrowedBooksList.get(i).getAuthorName());
+                System.out.println("Due Date: " + borrowedBooksList.get(i).getDueDate().toString());
+                System.out.println("---------------------------------");
+            }
+        } else System.out.println("You Don't Have Books to Show.");
     }
 
     public void presentLostBooks() {
+        if (lostBookArrayList.size() != 0){
         System.out.println("Your Lost Books is :");
         for (int i = 0; i < lostBookArrayList.size(); i++) {
-            System.out.println((i + 1) + "." + lostBookArrayList.get(i));
-        }
+            System.out.println("Book " + (i + 1) + ": ");
+            System.out.println("Title: " + lostBookArrayList.get(i).getTitle());
+            System.out.println("Author Name: " + lostBookArrayList.get(i).getAuthorName());
+            System.out.println("---------------------------------");
+        }}else System.out.println("You Don't Have Books to Show.");
     }
 
     public void presentReturnedBooks() {
+        if (returnedBookArrayList.size() != 0){
         System.out.println("Your Returned Books is :");
         for (int i = 0; i < returnedBookArrayList.size(); i++) {
-            System.out.println((i + 1) + "." + returnedBookArrayList.get(i));
-        }
+            System.out.println("Book " + (i + 1) + ": ");
+            System.out.println("Title: " + returnedBookArrayList.get(i).getTitle());
+            System.out.println("Author Name: " + returnedBookArrayList.get(i).getAuthorName());
+            System.out.println("Due Date was: " + returnedBookArrayList.get(i).getDueDate().toString());
+            System.out.println("---------------------------------");
+        }}
+        else System.out.println("You Don't Have Books to Show.");
     }
 
     public void addToBorrowedBooksList(Book book) {
@@ -138,7 +154,7 @@ public class Student {
     }
 
     public static void BorrowBook(Student student, Library library, Book book) {
-        if (student.getBorrowedBooks() < student.maximumNumberOfBooksBorrowed && book.getNumOfCopies() > 0) {
+        if (student.getBorrowedBooks() < student.maximumNumberOfBooksBorrowed && book.getNumOfCopies() > 1) {
             if (library.searchBookByISPN(book.getISBN()) instanceof Book) {
                 student.addToBorrowedBooksList(book);
                 library.addToBorrowedBooksList(book);
@@ -187,11 +203,14 @@ public class Student {
                     String[] borrowedBooks = parts[6].split("\\),");
                     for (int i = 0; i < borrowedBooks.length; i++) {
                         borrowedBooks[i] = borrowedBooks[i].replace("(", "");
+                        for (int j = 0; j < 3; j++) {
+                            borrowedBooks[i] = borrowedBooks[i].replace(" ", "");
+                        }
                         borrowedBooks[i] = borrowedBooks[i].replace(")", "");
                     }
                     for (String borrowedBook : borrowedBooks) {
                         String[] bookParts = borrowedBook.split(",");
-                        Book book = new Book(bookParts[0], bookParts[1], Integer.parseInt(bookParts[2]), Date.fromStringtoDate(bookParts[3]), Integer.parseInt(bookParts[4]), Date.fromStringtoDate(bookParts[5]), bookParts[6], bookParts[7], bookParts[8]);
+                        Book book = new Book(bookParts[0], bookParts[1], bookParts[2], Date.fromStringtoDate(bookParts[3]), Integer.parseInt(bookParts[4]), Date.fromStringtoDate(bookParts[5]), bookParts[6], bookParts[7], bookParts[8]);
                         borrowedBooksList.add(book);
                     }
                 }
@@ -206,7 +225,7 @@ public class Student {
                     }
                     for (String lostBook : lostBooks) {
                         String[] bookParts = lostBook.split(",");
-                        Book book = new Book(bookParts[0], bookParts[1], Integer.parseInt(bookParts[2]), Date.fromStringtoDate(bookParts[3]), Integer.parseInt(bookParts[4]), Date.fromStringtoDate(bookParts[5]), bookParts[6], bookParts[7], bookParts[8]);
+                        Book book = new Book(bookParts[0], bookParts[1], bookParts[2], Date.fromStringtoDate(bookParts[3]), Integer.parseInt(bookParts[4]), Date.fromStringtoDate(bookParts[5]), bookParts[6], bookParts[7], bookParts[8]);
                         lostBookArrayList.add(book);
                     }
                 }
@@ -221,7 +240,7 @@ public class Student {
                     }
                     for (String returnedBook : returnedBooks) {
                         String[] bookParts = returnedBook.split(",");
-                        Book book = new Book(bookParts[0], bookParts[1], Integer.parseInt(bookParts[2]), Date.fromStringtoDate(bookParts[3]), Integer.parseInt(bookParts[4]), Date.fromStringtoDate(bookParts[5]), bookParts[6], bookParts[7], bookParts[8]);
+                        Book book = new Book(bookParts[0], bookParts[1], bookParts[2], Date.fromStringtoDate(bookParts[3]), Integer.parseInt(bookParts[4]), Date.fromStringtoDate(bookParts[5]), bookParts[6], bookParts[7], bookParts[8]);
                         returnedBookArrayList.add(book);
                     }
                 }
@@ -238,6 +257,13 @@ public class Student {
             System.out.println(e);
         }
         return students;
+    }
+
+    public void showInfo(){
+        System.out.println("Name: " + name);
+        System.out.println("ID: " + id);
+        System.out.println("email: " + email);
+        System.out.println("Borrowed Books Numbers: " + borrowedBooks);
     }
 
     public String saveStyle() {

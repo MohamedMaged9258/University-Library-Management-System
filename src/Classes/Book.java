@@ -12,14 +12,14 @@ public class Book {
     private String studentId;
     private String breakDueDate;
     private String lost;
-    private int ISBN;
+    private String ISBN;
     int numOfCopies;
     private Date publicationDate = new Date("0000", "00", "00");
     private Date dueDate = new Date("0000", "00", "00");
 
     //Constructors
     public Book() {}
-    public Book(String title, String authorName, int ISBN, Date publicationDate, int numOfCopies, String breakDueDate, String lost) {
+    public Book(String title, String authorName, String ISBN, Date publicationDate, int numOfCopies, String breakDueDate, String lost) {
         this.title = title;
         this.authorName = authorName;
         this.ISBN = ISBN;
@@ -28,7 +28,7 @@ public class Book {
         this.breakDueDate = breakDueDate;
         this.lost = lost;
     }
-    public Book(String title, String authorName, int ISBN, Date publicationDate,  int numOfCopies, Date dueDate,String studentId, String breakDueDate, String lost) {
+    public Book(String title, String authorName, String ISBN, Date publicationDate,  int numOfCopies, Date dueDate,String studentId, String breakDueDate, String lost) {
         this.title = title;
         this.authorName = authorName;
         this.ISBN = ISBN;
@@ -53,7 +53,7 @@ public class Book {
     public int getNumOfCopies() {
         return numOfCopies;
     }
-    public int getISBN() {
+    public String getISBN() {
         return ISBN;
     }
     public Date getPublicationDate() {
@@ -105,7 +105,7 @@ public class Book {
                     parts[i] = parts[i].replace("(", "");
                     parts[i] = parts[i].replace(")", "");
                 }
-                Book book = new Book(parts[0], parts[1], Integer.parseInt(parts[2]), Date.fromStringtoDate(parts[3]), Integer.parseInt(parts[4]), Date.fromStringtoDate(parts[5]), parts[6], parts[7], parts[8]);
+                Book book = new Book(parts[0], parts[1], parts[2], Date.fromStringtoDate(parts[3]), Integer.parseInt(parts[4]), Date.fromStringtoDate(parts[5]), parts[6], parts[7], parts[8]);
                 bookArrayList.add(book);
             }
             br.close();
@@ -137,7 +137,7 @@ public class Book {
                     parts[i] = parts[i].replace("(", "");
                     parts[i] = parts[i].replace(")", "");
                 }
-                Book book = new Book(parts[0], parts[1], Integer.parseInt(parts[2]), Date.fromStringtoDate(parts[3]), Integer.parseInt(parts[4]), Date.fromStringtoDate(parts[5]), parts[6], parts[7], parts[8]);
+                Book book = new Book(parts[0], parts[1], parts[2], Date.fromStringtoDate(parts[3]), Integer.parseInt(parts[4]), Date.fromStringtoDate(parts[5]), parts[6], parts[7], parts[8]);
                 bookArrayList.add(book);
             }
             br.close();
@@ -169,7 +169,7 @@ public class Book {
                     parts[i] = parts[i].replace("(", "");
                     parts[i] = parts[i].replace(")", "");
                 }
-                Book book = new Book(parts[0], parts[1], Integer.parseInt(parts[2]), Date.fromStringtoDate(parts[3]), Integer.parseInt(parts[4]), Date.fromStringtoDate(parts[5]), parts[6], parts[7], parts[8]);
+                Book book = new Book(parts[0], parts[1], parts[2], Date.fromStringtoDate(parts[3]), Integer.parseInt(parts[4]), Date.fromStringtoDate(parts[5]), parts[6], parts[7], parts[8]);
                 bookArrayList.add(book);
             }
             br.close();
