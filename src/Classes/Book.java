@@ -18,7 +18,9 @@ public class Book {
     private Date dueDate = new Date("0000", "00", "00");
 
     //Constructors
-    public Book() {}
+    public Book() {
+    }
+
     public Book(String title, String authorName, String ISBN, Date publicationDate, int numOfCopies, String breakDueDate, String lost) {
         this.title = title;
         this.authorName = authorName;
@@ -28,7 +30,8 @@ public class Book {
         this.breakDueDate = breakDueDate;
         this.lost = lost;
     }
-    public Book(String title, String authorName, String ISBN, Date publicationDate,  int numOfCopies, Date dueDate,String studentId, String breakDueDate, String lost) {
+
+    public Book(String title, String authorName, String ISBN, Date publicationDate, int numOfCopies, Date dueDate, String studentId, String breakDueDate, String lost) {
         this.title = title;
         this.authorName = authorName;
         this.ISBN = ISBN;
@@ -44,30 +47,39 @@ public class Book {
     public String getTitle() {
         return title;
     }
+
     public String getAuthorName() {
         return authorName;
     }
+
     public void getDate() {
         System.out.println(publicationDate);
     }
+
     public int getNumOfCopies() {
         return numOfCopies;
     }
+
     public String getISBN() {
         return ISBN;
     }
+
     public Date getPublicationDate() {
         return publicationDate;
     }
+
     public Date getDueDate() {
         return dueDate;
     }
+
     public String getStudentId() {
         return studentId;
     }
+
     public String getBreakDueDate() {
         return breakDueDate;
     }
+
     public String getLost() {
         return lost;
     }
@@ -76,9 +88,11 @@ public class Book {
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
+
     public void setNumOfCopies(int numOfCopies) {
         this.numOfCopies = numOfCopies;
     }
+
     public void setStudentId(String studentId) {
         this.studentId = studentId;
     }
@@ -94,6 +108,7 @@ public class Book {
             e.printStackTrace();
         }
     }
+
     public static ArrayList<Book> loadBooksFromFile() {
         ArrayList<Book> bookArrayList = new ArrayList<>();
         try {
@@ -117,6 +132,7 @@ public class Book {
         }
         return bookArrayList;
     }
+
     public static void saveLostBookToFile(Book book, boolean append) {
         try {
             FileWriter writer = new FileWriter("LostBooks.txt", append);
@@ -126,6 +142,7 @@ public class Book {
             e.printStackTrace();
         }
     }
+
     public static ArrayList<Book> loadLostBooksFromFile() {
         ArrayList<Book> bookArrayList = new ArrayList<>();
         try {
@@ -149,6 +166,7 @@ public class Book {
         }
         return bookArrayList;
     }
+
     public static void saveBorrowedBookToFile(Book book, boolean append) {
         try {
             FileWriter writer = new FileWriter("BorrowedBooks.txt", append);
@@ -158,6 +176,7 @@ public class Book {
             e.printStackTrace();
         }
     }
+
     public static ArrayList<Book> loadBorrowedBooksFromFile() {
         ArrayList<Book> bookArrayList = new ArrayList<>();
         try {
@@ -182,6 +201,7 @@ public class Book {
         }
         return bookArrayList;
     }
+
     public String saveStyle() {
         return "(" +
                 title +
@@ -195,6 +215,7 @@ public class Book {
                 "," + lost +
                 ')';
     }
+
     @Override
     public String toString() {
         return "(" +

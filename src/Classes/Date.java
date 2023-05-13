@@ -9,10 +9,10 @@ public class Date {
     private String day;
 
     public Date(String year, String month, String day) {
-        if (day.length() < 2){
+        if (day.length() < 2) {
             day = "0" + day;
         }
-        if (month.length() < 2){
+        if (month.length() < 2) {
             month = "0" + month;
         }
         this.year = year;
@@ -24,9 +24,11 @@ public class Date {
     public int getYear() {
         return Integer.parseInt(year);
     }
+
     public int getMonth() {
         return Integer.parseInt(month);
     }
+
     public int getDay() {
         return Integer.parseInt(day);
     }
@@ -35,28 +37,28 @@ public class Date {
     public void setYear(String year) {
         this.year = year;
     }
+
     public void setMonth(String month) {
         this.month = month;
     }
+
     public void setDay(String day) {
         this.day = day;
     }
 
     //Methods
-    public static Date enterDate(){
+    public static Date enterDate() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Please Enter the Year of publication: ");
         String year = scanner.next();
-        System.out.println();
         System.out.print("Please Enter the Month of publication: ");
         String month = scanner.next();
-        System.out.println();
         System.out.print("Please Enter the Day of publication: ");
         String day = scanner.next();
-        System.out.println();
         return new Date(year, month, day);
     }
-    public static Date fromStringtoDate(String s){
+
+    public static Date fromStringtoDate(String s) {
         StringBuilder tempYear = new StringBuilder();
         StringBuilder tempMonth = new StringBuilder();
         StringBuilder tempDay = new StringBuilder();
@@ -71,7 +73,8 @@ public class Date {
         }
         return new Date(tempYear.toString(), tempMonth.toString(), tempDay.toString());
     }
-    public static Date setDueDate(){
+
+    public static Date setDueDate() {
         // Get the current date
         LocalDate currentDate = LocalDate.now().plusDays(14);
 
@@ -80,26 +83,30 @@ public class Date {
         int month = currentDate.getMonthValue();
         int year = currentDate.getYear();
 
-        return new Date(String.valueOf(year),String.valueOf(month),String.valueOf(day));
+        return new Date(String.valueOf(year), String.valueOf(month), String.valueOf(day));
     }
-    public static Date resetDueDate(){
+
+    public static Date resetDueDate() {
         return new Date("0000", "00", "00");
     }
-    public static boolean brokeDueDate(Date dueDate){
+
+    public static boolean brokeDueDate(Date dueDate) {
         LocalDate currentDate = LocalDate.now();
         int day = currentDate.getDayOfMonth();
         int month = currentDate.getMonthValue();
         int year = currentDate.getYear();
-        if (dueDate.getYear() <= year){
-            if (dueDate.getMonth() <= month){
+        if (dueDate.getYear() <= year) {
+            if (dueDate.getMonth() <= month) {
                 return dueDate.getDay() <= day;
             }
         }
         return false;
     }
+
     public String saveStyle() {
         return year + month + day;
     }
+
     @Override
     public String toString() {
         return year +

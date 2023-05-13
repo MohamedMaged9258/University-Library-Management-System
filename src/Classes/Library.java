@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class Library {
-    ArrayList<Book> bookArrayList;
-    ArrayList<Student> studentArrayList;
-    ArrayList<Librarian> librarianArrayList;
-    ArrayList<Book> lostBookArrayList;
-    ArrayList<Book> borrowedBookArrayList;
+    private ArrayList<Book> bookArrayList;
+    private ArrayList<Student> studentArrayList;
+    private ArrayList<Librarian> librarianArrayList;
+    private ArrayList<Book> lostBookArrayList;
+    private ArrayList<Book> borrowedBookArrayList;
 
     //Constructors
     public Library(ArrayList<Student> studentArrayList, ArrayList<Librarian> librarianArrayList, ArrayList<Book> bookArrayList, ArrayList<Book> lostBookArrayList, ArrayList<Book> borrowedBookArrayList) {
@@ -22,14 +22,6 @@ public class Library {
     // Getters
     public ArrayList<Book> getBookArrayList() {
         return bookArrayList;
-    }
-
-    public ArrayList<Student> getStudentArrayList() {
-        return studentArrayList;
-    }
-
-    public ArrayList<Librarian> getLibrarianArrayList() {
-        return librarianArrayList;
     }
 
     public ArrayList<Book> getLostBookArrayList() {
@@ -130,6 +122,16 @@ public class Library {
         }
     }
 
+    public void presentBook(Book book) {
+        System.out.println("Title: " + book.getTitle());
+        System.out.println("Author Name: " + book.getAuthorName());
+        System.out.println("ISBN: " + book.getISBN());
+        System.out.println("Number Of Available: " + (book.getNumOfCopies() - 1));
+        System.out.println("If you return the book after Due Date you will Pay: " + book.getBreakDueDate());
+        System.out.println("If you lost the book you will Pay: " + book.getLost());
+        System.out.println("----------------------------------------");
+    }
+
     public void presentBorrowedBooks() {
         System.out.println("The Borrowed Books is :");
         for (int i = 0; i < borrowedBookArrayList.size(); i++) {
@@ -195,5 +197,27 @@ public class Library {
             library.getBookArrayList().get(i).setStudentId("");
             Book.saveBookToFile(library.getBookArrayList().get(i), true);
         }
+    }
+
+    private static Object binarySearch0(ArrayList<Book> a, Object key) {
+        int low = 0;
+        int high = a.size();
+
+        while (low <= high) {
+            int mid = low + high >>> 1;
+            Comparable midVal = (Comparable) a.get(mid).getISBN();
+            int cmp = midVal.compareTo(key);
+            if (cmp < 0) {
+                low = mid + 1;
+            } else {
+                if (cmp <= 0) {
+                    return a.get(mid);
+                }
+
+                high = mid - 1;
+            }
+        }
+
+        return "Not Available.";
     }
 }

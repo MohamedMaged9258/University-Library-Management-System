@@ -111,7 +111,7 @@ public class Librarian {
         return librarianArrayList;
     }
 
-    public void showInfo(){
+    public void showInfo() {
         System.out.println("Name: " + name);
         System.out.println("ID: " + id);
         System.out.println("Email: " + email);

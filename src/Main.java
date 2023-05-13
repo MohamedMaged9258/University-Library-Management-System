@@ -1,4 +1,7 @@
-import Classes.*;
+import Classes.Book;
+import Classes.Librarian;
+import Classes.Library;
+import Classes.Student;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -10,6 +13,7 @@ public class Main {
         ArrayList<Book> bookArrayList = Book.loadBooksFromFile();
         ArrayList<Book> lostBookArrayList = Book.loadLostBooksFromFile();
         ArrayList<Book> borrowedBookArrayList = Book.loadBorrowedBooksFromFile();
+
         Student student = new Student();
         Librarian librarian = new Librarian();
         Library library = new Library(studentArrayList, librarianArrayList, bookArrayList, lostBookArrayList, borrowedBookArrayList);
@@ -47,7 +51,6 @@ public class Main {
 
         boolean running = true;
         if (x == 1) {
-            System.out.println(student);
             while (running) {
                 System.out.println("""
                         \n
@@ -59,6 +62,7 @@ public class Main {
                         5.Return Book
                         6.Lost Book
                         7.Show Fines
+                        8.Search by ISBN
                         """);
                 System.out.print("Choose A Number: ");
                 x = scanner.nextInt();
@@ -66,6 +70,7 @@ public class Main {
                     case 0 -> {
                         library.addToStudentList(student);
                         Library.saveNewFiles(library);
+                        System.out.println("Please Remember that your ID is: " +  student.getId());
                         running = false;
                     }
                     case 1 -> student.showInfo();
@@ -90,11 +95,18 @@ public class Main {
                         Student.lostBook(student, library, student.getBorrowedBooksList().get(y - 1));
                     }
                     case 7 -> System.out.println("You have to pay: " + student.getFines());
+                    case 8 -> {
+                        System.out.print("Enter ISBN: ");
+                        String isbn = scanner.next();
+                        System.out.println();
+                        if (library.searchBookByISPN(isbn) instanceof Book && ((Book) library.searchBookByISPN(isbn)).getNumOfCopies() > 1){
+                            library.presentBook((Book) library.searchBookByISPN(isbn));
+                        }else System.out.println("This Book isn't Available At This moment");
+                    }
                     default -> System.out.println("Please choose a number from the list.🤨");
                 }
             }
         } else if (x == 2) {
-            System.out.println(librarian);
             while (running) {
                 System.out.println("""
                         \n
@@ -116,6 +128,7 @@ public class Main {
                     case 0 -> {
                         library.addToLibrarianList(librarian);
                         Library.saveNewFiles(library);
+                        System.out.println("Please Remember that your ID is: " + librarian.getId());
                         running = false;
                     }
                     case 1 -> librarian.showInfo();
@@ -140,7 +153,9 @@ public class Main {
     }
 
     public static String sign_in(ArrayList<Student> students, ArrayList<Librarian> librarianArrayList) {
-        Scanner scanner = new Scanner(System.in);
+//        new SignInGUI(students, librarianArrayList);
+//        return null;
+                Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.print("Please Enter your ID: ");
             String Id = scanner.next();
