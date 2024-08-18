@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98210c6f-f49d-4794-94b2-425c94a3a513" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Books.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Books.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BorrowedBooks.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BorrowedBooks.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Staff.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Staff.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Students.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Students.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Date.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Library.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_12_2023_1_44_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_12_2023_1_44_PM__Changes_.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +55,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Data__Base",
     "last_opened_file_path": "C:/Users/moham/GitHub/Java/University-Library-Management-System",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -78,6 +69,15 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="QodanaHighlightedReportService">
+    <option name="localRunNotPublishedPersistedInfo">
+      <LocalReportPersistedInfo>
+        <option name="path" value="C:\Users\moham\AppData\Local\Temp\qodana_output\qodana.sarif.json" />
+        <option name="reportGuid" value="ba2ad522-225d-4000-bfe2-d645a0d3925a" />
+        <option name="reportName" value="University-Library-Management-System/qodana/2024-08-18" />
+      </LocalReportPersistedInfo>
+    </option>
+  </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main$LoginSignUpGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main$LoginSignUpGUI" />
@@ -146,5 +146,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
