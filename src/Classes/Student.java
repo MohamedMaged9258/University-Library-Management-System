@@ -42,6 +42,13 @@ public class Student {
         this.fines = fines;
     }
 
+    public Student(String name, String email, String password, String id) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.id = id;
+    }
+
     // Getters
     public String getName() {
         return name;

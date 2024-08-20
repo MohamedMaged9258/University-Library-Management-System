@@ -5,12 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98210c6f-f49d-4794-94b2-425c94a3a513" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataBase/Connector_Jar/mysql-connector-j-9.0.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DataBase/Helper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/13d186f5-bdc8-444b-95f7-6fa487143af6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/13d186f5-bdc8-444b-95f7-6fa487143af6.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70345b35-6a87-4a84-818d-d5c7300568f7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70345b35-6a87-4a84-818d-d5c7300568f7/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70345b35-6a87-4a84-818d-d5c7300568f7/storage_v2/_src_/schema/information_schema.FNRwLQ.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70345b35-6a87-4a84-818d-d5c7300568f7/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70345b35-6a87-4a84-818d-d5c7300568f7/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70345b35-6a87-4a84-818d-d5c7300568f7/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70345b35-6a87-4a84-818d-d5c7300568f7/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70345b35-6a87-4a84-818d-d5c7300568f7/storage_v2/_src_/schema/sys.zb4BAA.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/University Library Management System.iml" beforeDir="false" afterPath="$PROJECT_DIR$/University Library Management System.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Books.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Books.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Students.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Students.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataBase/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataBase/Helper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,52 +62,58 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MigrationScriptOptions">
+    <option name="ignoreImplicitObjects" value="true" />
+    <option name="ignoreSourceCode" value="false" />
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2OfIoxcGa7xFODJwwoau1F5jQfd" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Helper.executor": "Run",
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Data__Base",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Codes/GitHub/University-Library-Management-System/src/DataBase/Connector_Jar/mysql-connector-j-9.0.0.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "database.query.execution",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Helper.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;SQL-Insert-Multirow.sql.groovy&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Data__Base&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Codes/GitHub/University-Library-Management-System/src/DataBase/Connector_Jar/mysql-connector-j-9.0.0.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Codes\GitHub\University-Library-Management-System\src\DataBase\Connector_Jar" />
       <recent name="D:\Codes\GitHub\University-Library-Management-System\src\DataBase" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Helper">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Helper" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="DataBase.Helper" />
       <module name="University Library Management System" />
@@ -127,8 +143,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Helper" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Helper" />
         <item itemvalue="Application.Main$LoginSignUpGUI" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main$LoginSignUpGUI" />
@@ -173,7 +189,11 @@
       <workItem from="1683193964456" duration="6690000" />
       <workItem from="1683202928891" duration="5470000" />
       <workItem from="1683806996274" duration="12162000" />
-      <workItem from="1724080596663" duration="5906000" />
+      <workItem from="1724080596663" duration="6382000" />
+      <workItem from="1724089415276" duration="3447000" />
+      <workItem from="1724106337101" duration="5016000" />
+      <workItem from="1724175339300" duration="5433000" />
+      <workItem from="1724188582031" duration="2339000" />
     </task>
     <servers />
   </component>

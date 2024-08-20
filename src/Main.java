@@ -2,11 +2,17 @@ import Classes.Book;
 import Classes.Librarian;
 import Classes.Library;
 import Classes.Student;
+import DataBase.Helper;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+    //        public static void main(String[] args) {
+//            Helper helper = new Helper();
+//            Librarian librarian = new Librarian("temp", "temp@gmail.com", "12345");
+//            helper.newLibrarian(librarian);
+//        }
     public static void main(String[] args) {
         ArrayList<Student> studentArrayList = Student.loadStudentsFromFile();
         ArrayList<Librarian> librarianArrayList = Librarian.loadLibrarianFromFile();
@@ -27,17 +33,11 @@ public class Main {
         int x = scanner.nextInt();
         scanner.nextLine();
         if (x == 1) {
-            String user = sign_in(studentArrayList, librarianArrayList);
-            String s = user.charAt(0) + String.valueOf(user.charAt(1));
-            if (s.equals("SD")) {
-                int temp = Integer.parseInt(user.split("D")[1]);
-                student = studentArrayList.get(temp);
-                studentArrayList.remove(studentArrayList.get(temp));
-            } else if (s.equals("ST")) {
-                int temp = Integer.parseInt(user.split("T")[1]);
-                librarian = librarianArrayList.get(temp);
-                librarianArrayList.remove(librarianArrayList.get(temp));
-                x = 2;
+            Object user = sign_in();
+            if (user instanceof Student) {
+                student = (Student) user;
+            } else if (user instanceof Librarian) {
+                librarian = (Librarian) user;
             }
         } else if (x == 2) {
             Object user = sign_up();
@@ -70,7 +70,7 @@ public class Main {
                     case 0 -> {
                         library.addToStudentList(student);
                         Library.saveNewFiles(library);
-                        System.out.println("Please Remember that your ID is: " +  student.getId());
+                        System.out.println("Please Remember that your ID is: " + student.getId());
                         running = false;
                     }
                     case 1 -> student.showInfo();
@@ -99,9 +99,9 @@ public class Main {
                         System.out.print("Enter ISBN: ");
                         String isbn = scanner.next();
                         System.out.println();
-                        if (library.searchBookByISPN(isbn) instanceof Book && ((Book) library.searchBookByISPN(isbn)).getNumOfCopies() > 1){
+                        if (library.searchBookByISPN(isbn) instanceof Book && ((Book) library.searchBookByISPN(isbn)).getNumOfCopies() > 1) {
                             library.presentBook((Book) library.searchBookByISPN(isbn));
-                        }else System.out.println("This Book isn't Available At This moment");
+                        } else System.out.println("This Book isn't Available At This moment");
                     }
                     default -> System.out.println("Please choose a number from the list.🤨");
                 }
@@ -152,40 +152,31 @@ public class Main {
         }
     }
 
-    public static String sign_in(ArrayList<Student> students, ArrayList<Librarian> librarianArrayList) {
+    public static Object sign_in() {
 //        new SignInGUI(students, librarianArrayList);
 //        return null;
-                Scanner scanner = new Scanner(System.in);
+        Helper helper = new Helper();
+        Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.print("Please Enter your ID: ");
             String Id = scanner.next();
             if ((Id.charAt(0) + String.valueOf(Id.charAt(1))).equals("SD")) {
                 System.out.print("Please Enter Your Password: ");
                 String password = scanner.next();
-                for (int i = 0; i < students.size(); i++) {
-                    if (students.get(i).getId().equals(Id)) {
-                        if (students.get(i).getPassword().equals(password)) {
-                            System.out.println("Sign In Success.👌");
-                            System.out.println("Welcome " + students.get(i).getName());
-                            return "SD" + i;
-                        } else System.out.println("The Password Is wrong.🤨");
-                    } else if (students.size() - 1 == i) {
-                        System.out.println("Please Check your ID and try again.😊");
-                    }
+                Object student = helper.getStudent(Id, password);
+                if (student instanceof Student) {
+                    return student;
+                } else {
+                    System.out.println("Please Check your ID Or Password and try again.😊");
                 }
             } else if ((Id.charAt(0) + String.valueOf(Id.charAt(1))).equals("ST")) {
                 System.out.print("Please Enter Your Password: ");
                 String password = scanner.next();
-                for (int i = 0; i < librarianArrayList.size(); i++) {
-                    if (librarianArrayList.get(i).getId().equals(Id)) {
-                        if (librarianArrayList.get(i).getPassword().equals(password)) {
-                            System.out.println("Sign In Success.👌");
-                            System.out.println("Welcome " + librarianArrayList.get(i).getName());
-                            return "ST" + i;
-                        } else System.out.println("The Password Is wrong.🤨");
-                    } else if (students.size() - 1 == i) {
-                        System.out.println("Please Check your ID and try again.😊");
-                    }
+                Object librarian = helper.getLibrarian(Id, password);
+                if (librarian instanceof Librarian) {
+                    return librarian;
+                } else {
+                    System.out.println("Please Check your ID Or Password and try again.😊");
                 }
             } else System.out.println("Please Check your ID and try again.😊");
         }
@@ -193,6 +184,7 @@ public class Main {
 
     public static Object sign_up() {
         Scanner scanner = new Scanner(System.in);
+        Helper helper = new Helper();
         System.out.println("Welcome to your University Library \n");
         while (true) {
             System.out.println("""
@@ -210,7 +202,9 @@ public class Main {
                 String email = scanner.nextLine();
                 System.out.print("Please Enter Your Password: ");
                 String password = scanner.next();
-                return new Librarian(name, email, password);
+                Librarian librarian = new Librarian(name, email, password);
+                helper.newLibrarian(librarian);
+                return librarian;
             } else if (x == 2) {
                 System.out.print("Please Enter Your Name: ");
                 String name = scanner.nextLine();
@@ -218,7 +212,9 @@ public class Main {
                 String email = scanner.nextLine();
                 System.out.print("Please Enter Your Password: ");
                 String password = scanner.next();
-                return new Student(name, email, password);
+                Student student = new Student(name, email, password);
+                helper.newStudent(student);
+                return student;
             } else System.out.println("Please try again.");
         }
     }
