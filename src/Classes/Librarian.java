@@ -1,9 +1,13 @@
 package Classes;
 
+import DataBase.Helper;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -51,19 +55,30 @@ public class Librarian {
     }
 
     //Methods
-    public static void checkStudentBorrowedBooks(Student student) {
-        ArrayList<Book> books = student.getBorrowedBooksList();
-        for (int i = 0; i < books.size(); i++) {
-            System.out.println("Book " + (i + 1) + ": ");
-            System.out.println("Title: " + books.get(i).getTitle());
-            System.out.println("Author Name: " + books.get(i).getAuthorName());
-            System.out.println("ISBN: " + books.get(i).getISBN());
-            System.out.println("Due Date: " + books.get(i).getDueDate().toString());
+    public static void CheckStudentBorrowedBooksByID(String userId) {
+        String query = "select * from main.borrowed_books inner join main.books on borrowed_books.ISBN = main.books.ISBN where Student_ID='" + userId + "'";
+        ResultSet resultSet = Helper.executeQuery(query);
+        int i = 0;
+        try {
+            if (!resultSet.isBeforeFirst()) {
+                System.out.println("There is No borrowed books");
+            } else {
+                while (resultSet.next()) {
+                    i++;
+                    System.out.println("Book " + i + ": ");
+                    System.out.println("    Title: " + resultSet.getString("title"));
+                    System.out.println("    Author Name: " + resultSet.getString("author_name"));
+                    System.out.println("    ISBN: " + resultSet.getString("isbn"));
+                    System.out.println("    Due Date: " + resultSet.getString("due_date"));
+                    System.out.println("---------------------------------------------------");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        System.out.println();
     }
 
-    public static Book addNewBook() {
+    public static void addNewBook() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter Title: ");
         String title = scanner.nextLine();
@@ -78,7 +93,8 @@ public class Librarian {
         String breakDueDate = scanner.next();
         System.out.print("Enter if user lost the book how much he will pay: ");
         String lost = scanner.next();
-        return new Book(title, authorName, ISBN, publicationDate, numOfCopies, breakDueDate, lost);
+        String query = "insert into books (ISBN, title, Author_Name, Publication_Date, Copies, Delay_Fine, Lost_Fine)" + "values ('" + ISBN + "', '" + title + "', '" + authorName + "', '" + publicationDate + "', '" + numOfCopies + "', '" + breakDueDate + "', '" + lost + "');";
+        Helper.executeUpdate(query);
     }
 
     public static void saveLibrarianToFile(Librarian librarian) {
@@ -87,7 +103,7 @@ public class Librarian {
             writer.write(librarian.toString());
             writer.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 

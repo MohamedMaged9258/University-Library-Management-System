@@ -5,20 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98210c6f-f49d-4794-94b2-425c94a3a513" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/13d186f5-bdc8-444b-95f7-6fa487143af6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/13d186f5-bdc8-444b-95f7-6fa487143af6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70345b35-6a87-4a84-818d-d5c7300568f7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70345b35-6a87-4a84-818d-d5c7300568f7/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70345b35-6a87-4a84-818d-d5c7300568f7/storage_v2/_src_/schema/information_schema.FNRwLQ.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70345b35-6a87-4a84-818d-d5c7300568f7/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70345b35-6a87-4a84-818d-d5c7300568f7/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70345b35-6a87-4a84-818d-d5c7300568f7/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70345b35-6a87-4a84-818d-d5c7300568f7/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/70345b35-6a87-4a84-818d-d5c7300568f7/storage_v2/_src_/schema/sys.zb4BAA.zip" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Books.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Books.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Students.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Students.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Librarian.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Librarian.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Librarian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Librarian.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Library.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataBase/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataBase/Helper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
@@ -38,6 +31,7 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <branch-grouping />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="main" />
@@ -58,6 +52,9 @@
         <option name="url" value="https://github.com/MohamedMaged9258/University-Library-Management-System.git" />
       </UrlAndAccount>
     </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/Main.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -85,7 +82,9 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;database.data.extractors.current.export.id&quot;: &quot;SQL-Insert-Multirow.sql.groovy&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
     &quot;git-widget-placeholder&quot;: &quot;Data__Base&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
@@ -98,7 +97,8 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -193,19 +193,77 @@
       <workItem from="1724089415276" duration="3447000" />
       <workItem from="1724106337101" duration="5016000" />
       <workItem from="1724175339300" duration="5433000" />
-      <workItem from="1724188582031" duration="2339000" />
+      <workItem from="1724188582031" duration="7463000" />
+      <workItem from="1724247162894" duration="8804000" />
+      <workItem from="1724260622852" duration="1822000" />
+      <workItem from="1724350171639" duration="5625000" />
+      <workItem from="1724690540365" duration="3523000" />
+      <workItem from="1724715670104" duration="1521000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="GitHub.CommitStatus" />
+      </list>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/Data_Base" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/Data_Base" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/Data_Base" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

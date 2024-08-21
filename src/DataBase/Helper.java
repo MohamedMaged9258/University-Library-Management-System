@@ -6,32 +6,36 @@ import Classes.Student;
 import java.sql.*;
 
 public class Helper {
-    String url = "jdbc:mysql://127.0.0.1:3306/main";
-    String user = "root";
-    String password = "root";
+    static String url = "jdbc:mysql://127.0.0.1:3306/main";
+    static String user = "root";
+    static String password = "root";
 
-    private Connection getConnection() {
+    private static Connection getConnection() {
         Connection connection;
         try {
-            connection = DriverManager.getConnection(
-                    url,
-                    user,
-                    password
-            );
+            connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return connection;
     }
 
-    //Librarian Methods
-    public void newLibrarian(Librarian librarian) {
+    public static ResultSet executeQuery(String query) {
         Connection connection = getConnection();
         Statement statement;
         try {
             statement = connection.createStatement();
-            String query = "insert into librarian (ID, Email, Name, Password)" +
-                    "values ('" + librarian.getId() + "', '" + librarian.getEmail() + "', '" + librarian.getName() + "', '" + librarian.getPassword() + "')";
+            return statement.executeQuery(query);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void executeUpdate(String query) {
+        Connection connection = getConnection();
+        Statement statement;
+        try {
+            statement = connection.createStatement();
             statement.executeUpdate(query);
             statement.close();
             connection.close();
@@ -40,21 +44,22 @@ public class Helper {
         }
     }
 
+    //Librarian Methods
+    public void newLibrarian(Librarian librarian) {
+        String query = "insert into librarian (ID, Email, Name, Password)" + "values ('" + librarian.getId() + "', '" + librarian.getEmail() + "', '" + librarian.getName() + "', '" + librarian.getPassword() + "')";
+        executeUpdate(query);
+    }
+
     public Object getLibrarian(String userId, String password) {
-        Connection connection = getConnection();
         Object librarian;
-        Statement statement;
+        String query = "select * from librarian where id='" + userId + "' and password='" + password + "'";
+        ResultSet resultSet = executeQuery(query);
         try {
-            statement = connection.createStatement();
-            String query = "select * from librarian where id='" + userId + "' and password='" + password + "'";
-            ResultSet resultSet = statement.executeQuery(query);
             if (resultSet.next()) {
                 librarian = new Librarian(resultSet.getString("name"), resultSet.getString("email"), resultSet.getString("password"), resultSet.getString("id"));
-            }else {
+            } else {
                 librarian = null;
             }
-            statement.close();
-            connection.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -62,13 +67,32 @@ public class Helper {
     }
 
     //Student Methods
+    public void presentStudents() {
+        Connection connection = getConnection();
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            String query = "select * from main.student";
+            ResultSet resultSet = statement.executeQuery(query);
+            int i = 0;
+            while (resultSet.next()) {
+                i++;
+                System.out.println("Student " + i + ": ");
+                System.out.println("    Name: " + resultSet.getString("name"));
+                System.out.println("    Id: " + resultSet.getString("id"));
+                System.out.println("---------------------------------------------------");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void newStudent(Student student) {
         Connection connection = getConnection();
         Statement statement;
         try {
             statement = connection.createStatement();
-            String query = "insert into student (ID, Email, Name, Password)" +
-                    "values ('" + student.getId() + "', '" + student.getEmail() + "', '" + student.getName() + "', '" + student.getPassword() + "')";
+            String query = "insert into student (ID, Email, Name, Password)" + "values ('" + student.getId() + "', '" + student.getEmail() + "', '" + student.getName() + "', '" + student.getPassword() + "')";
             statement.executeUpdate(query);
             statement.close();
             connection.close();
@@ -87,7 +111,7 @@ public class Helper {
             ResultSet resultSet = statement.executeQuery(query);
             if (resultSet.next()) {
                 student = new Student(resultSet.getString("name"), resultSet.getString("email"), resultSet.getString("password"), resultSet.getString("id"));
-            }else {
+            } else {
                 student = null;
             }
             connection.close();

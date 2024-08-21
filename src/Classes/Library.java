@@ -1,7 +1,10 @@
 package Classes;
 
+import DataBase.Helper;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class Library {
     private ArrayList<Book> bookArrayList;
@@ -33,32 +36,7 @@ public class Library {
     }
 
     // Methods
-    public void sortBooksByTitle() {
-        bookArrayList.sort(new Comparator<Book>() {
-            @Override
-            public int compare(Book b1, Book b2) {
-                return b1.getTitle().compareTo(b2.getTitle());
-            }
-        });
-    }
 
-    public void sortBooksByAuthorName() {
-        bookArrayList.sort(new Comparator<Book>() {
-            @Override
-            public int compare(Book b1, Book b2) {
-                return b1.getAuthorName().compareTo(b2.getAuthorName());
-            }
-        });
-    }
-
-    public void sortBooksByISBN() {
-        bookArrayList.sort(new Comparator<Book>() {
-            @Override
-            public int compare(Book b1, Book b2) {
-                return b1.getISBN().compareTo(b2.getISBN());
-            }
-        });
-    }
 
     public void addToStudentList(Student student) {
         this.studentArrayList.add(student);
@@ -110,15 +88,45 @@ public class Library {
         return "Not Available";
     }
 
-    public void presentBooks() {
-        System.out.println("Library Books is :");
-        for (int i = 0; i < bookArrayList.size(); i++) {
-            System.out.println("Book " + (i + 1) + ": ");
-            System.out.println("Title: " + bookArrayList.get(i).getTitle());
-            System.out.println("ISBN: " + bookArrayList.get(i).getISBN());
-            System.out.println("If you return the book after Due Date you will Pay: " + bookArrayList.get(i).getBreakDueDate());
-            System.out.println("If you lost the book you will Pay: " + bookArrayList.get(i).getLost());
-            System.out.println("----------------------------------------");
+    public static void CheckBooks() {
+        String query = "select * from books";
+        listBooks(query);
+    }
+
+    public static void SortByTitle() {
+        String query = "select * from books order by title";
+        listBooks(query);
+    }
+
+    public static void SortByAuthorName() {
+        String query = "select * from books order by author_name";
+        listBooks(query);
+    }
+
+    public static void SortByISBN() {
+        String query = "select * from books order by isbn";
+        listBooks(query);
+    }
+
+    private static void listBooks(String query) {
+        ResultSet resultSet;
+        try {
+            resultSet = Helper.executeQuery(query);
+            int i = 0;
+            if (!resultSet.isBeforeFirst()) {
+                System.out.println("There is No books");
+            } else {
+                while (resultSet.next()) {
+                    i++;
+                    System.out.println("Book " + i + ": ");
+                    System.out.println("    Title: " + resultSet.getString("title"));
+                    System.out.println("    Author Name: " + resultSet.getString("author_name"));
+                    System.out.println("    ISBN: " + resultSet.getString("isbn"));
+                    System.out.println("---------------------------------------------------");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -132,34 +140,68 @@ public class Library {
         System.out.println("----------------------------------------");
     }
 
-    public void presentBorrowedBooks() {
-        System.out.println("The Borrowed Books is :");
-        for (int i = 0; i < borrowedBookArrayList.size(); i++) {
-            System.out.println("Book " + (i + 1) + ": ");
-            System.out.println("Title: " + borrowedBookArrayList.get(i).getTitle());
-            System.out.println("Author Name: " + borrowedBookArrayList.get(i).getAuthorName());
-            System.out.println("Due Date: " + borrowedBookArrayList.get(i).getDueDate().toString());
-            System.out.println("Student ID: " + borrowedBookArrayList.get(i).getStudentId());
-            System.out.println("----------------------------------------");
+    public static void CheckBorrowedBooks() {
+        String query = "select * from main.borrowed_books inner join main.books on borrowed_books.ISBN = main.books.ISBN";
+        ResultSet resultSet = Helper.executeQuery(query);
+        int i = 0;
+        try {
+            if (!resultSet.isBeforeFirst()) {
+                System.out.println("There is No borrowed books");
+            } else {
+                while (resultSet.next()) {
+                    i++;
+                    System.out.println("Book " + i + ": ");
+                    System.out.println("    Title: " + resultSet.getString("title"));
+                    System.out.println("    Author Name: " + resultSet.getString("author_name"));
+                    System.out.println("    ISBN: " + resultSet.getString("isbn"));
+                    System.out.println("    Borrowed By: " + resultSet.getString("student_id"));
+                    System.out.println("    Due Date: " + resultSet.getString("due_date"));
+                    System.out.println("---------------------------------------------------");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    public void presentLostBooks() {
-        System.out.println("The Lost Books is :");
-        for (int i = 0; i < lostBookArrayList.size(); i++) {
-            System.out.println("Book " + (i + 1) + ": ");
-            System.out.println("Title: " + lostBookArrayList.get(i).getTitle());
-            System.out.println("Author Name: " + lostBookArrayList.get(i).getAuthorName());
-            System.out.println("----------------------------------------");
+    public static void CheckLostBooks() {
+        String query = "select * from main.books join main.lost_books on lost_books.isbn = main.books.ISBN";
+        ResultSet resultSet = Helper.executeQuery(query);
+        int i = 0;
+        try {
+            if (!resultSet.isBeforeFirst()) {
+                System.out.println("There is No Lost books");
+            } else {
+                while (resultSet.next()) {
+                    i++;
+                    System.out.println("Book " + i + ": ");
+                    System.out.println("    Title: " + resultSet.getString("title"));
+                    System.out.println("    Author Name: " + resultSet.getString("author_name"));
+                    System.out.println("    ISBN: " + resultSet.getString("isbn"));
+                    System.out.println("    Lost By: " + resultSet.getString("student_id"));
+                    System.out.println("---------------------------------------------------");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    public void presentStudents() {
-        for (int i = 0; i < studentArrayList.size(); i++) {
-            System.out.println("Student " + (i + 1) + ": ");
-            System.out.println("Name: " + studentArrayList.get(i).getName());
-            System.out.println("Id: " + studentArrayList.get(i).getId());
-            System.out.println("----------------------------------------");
+    public static void presentStudents() {
+        String query = "select * from main.student";
+        try {
+            ResultSet resultSet = Helper.executeQuery(query);
+            int i = 0;
+            while (resultSet.next()) {
+                i++;
+                System.out.println("Student " + i + ": ");
+                System.out.println("    Name: " + resultSet.getString("name"));
+                System.out.println("    Id: " + resultSet.getString("id"));
+                System.out.println("---------------------------------------------------");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            ;
         }
     }
 
@@ -197,27 +239,5 @@ public class Library {
             library.getBookArrayList().get(i).setStudentId("");
             Book.saveBookToFile(library.getBookArrayList().get(i), true);
         }
-    }
-
-    private static Object binarySearch0(ArrayList<Book> a, Object key) {
-        int low = 0;
-        int high = a.size();
-
-        while (low <= high) {
-            int mid = low + high >>> 1;
-            Comparable midVal = (Comparable) a.get(mid).getISBN();
-            int cmp = midVal.compareTo(key);
-            if (cmp < 0) {
-                low = mid + 1;
-            } else {
-                if (cmp <= 0) {
-                    return a.get(mid);
-                }
-
-                high = mid - 1;
-            }
-        }
-
-        return "Not Available.";
     }
 }

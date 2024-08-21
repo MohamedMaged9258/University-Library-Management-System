@@ -1025,24 +1025,24 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     <collation id="287" parent="1" name="utf8mb4_mn_cyrl_0900_as_cs">
       <Charset>utf8mb4</Charset>
     </collation>
-    <schema id="288" parent="1" name="information_schema">
-      <CollationName>utf8mb3_general_ci</CollationName>
-    </schema>
-    <schema id="289" parent="1" name="main">
-      <LastIntrospectionLocalTimestamp>2024-08-20.21:55:17</LastIntrospectionLocalTimestamp>
-      <CollationName>utf8mb4_0900_ai_ci</CollationName>
-    </schema>
-    <schema id="290" parent="1" name="mysql">
+    <schema id="288" parent="1" name="mysql">
       <Grants>user|||mysql.session|localhost|SELECT|G</Grants>
       <LastIntrospectionLocalTimestamp>2024-08-20.21:16:46</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="291" parent="1" name="performance_schema">
+    <schema id="289" parent="1" name="information_schema">
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </schema>
+    <schema id="290" parent="1" name="performance_schema">
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <schema id="292" parent="1" name="sys">
+    <schema id="291" parent="1" name="sys">
       <Grants>sys_config|||mysql.sys|localhost|SELECT|G</Grants>
       <LastIntrospectionLocalTimestamp>2024-08-20.21:17:02</LastIntrospectionLocalTimestamp>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="292" parent="1" name="main">
+      <LastIntrospectionLocalTimestamp>2024-08-26.17:34:20</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="293" parent="1" name="Loloky">
@@ -1067,27 +1067,27 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <table id="298" parent="289" name="books">
+    <table id="298" parent="292" name="books">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="299" parent="289" name="borrowed_books">
+    <table id="299" parent="292" name="borrowed_books">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="300" parent="289" name="fines">
+    <table id="300" parent="292" name="fines">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="301" parent="289" name="librarian">
+    <table id="301" parent="292" name="librarian">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="302" parent="289" name="lost_books">
+    <table id="302" parent="292" name="lost_books">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="303" parent="289" name="student">
+    <table id="303" parent="292" name="student">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
@@ -1100,11 +1100,11 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="306" parent="298" name="Ayther_Name">
+    <column id="306" parent="298" name="Author_Name">
       <DasType>varchar(255)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="307" parent="298" name="Puplication_Date">
+    <column id="307" parent="298" name="Publication_Date">
       <DasType>varchar(255)|0s</DasType>
       <Position>4</Position>
     </column>

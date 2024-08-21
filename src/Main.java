@@ -14,6 +14,7 @@ public class Main {
 //            helper.newLibrarian(librarian);
 //        }
     public static void main(String[] args) {
+        Helper helper = new Helper();
         ArrayList<Student> studentArrayList = Student.loadStudentsFromFile();
         ArrayList<Librarian> librarianArrayList = Librarian.loadLibrarianFromFile();
         ArrayList<Book> bookArrayList = Book.loadBooksFromFile();
@@ -38,6 +39,7 @@ public class Main {
                 student = (Student) user;
             } else if (user instanceof Librarian) {
                 librarian = (Librarian) user;
+                x = 2;
             }
         } else if (x == 2) {
             Object user = sign_up();
@@ -77,7 +79,7 @@ public class Main {
                     case 2 -> student.presentBorrowedBooks();
                     case 3 -> student.presentReturnedBooks();
                     case 4 -> {
-                        library.presentBooks();
+//                        library.presentBooks();
                         System.out.print("Please Choose Book Number: ");
                         int y = scanner.nextInt();
                         Student.BorrowBook(student, library, library.getBookArrayList().get(y - 1));
@@ -126,26 +128,26 @@ public class Main {
                 System.out.println();
                 switch (x) {
                     case 0 -> {
-                        library.addToLibrarianList(librarian);
-                        Library.saveNewFiles(library);
                         System.out.println("Please Remember that your ID is: " + librarian.getId());
                         running = false;
                     }
                     case 1 -> librarian.showInfo();
-                    case 2 -> library.addNewBook(Librarian.addNewBook());
-                    case 3 -> {
-                        library.presentStudents();
-                        System.out.print("Please Choose Student Number: ");
-                        int y = scanner.nextInt();
-                        System.out.println();
-                        Librarian.checkStudentBorrowedBooks(studentArrayList.get(y - 1));
+                    case 2 -> {
+                        Librarian.addNewBook();
                     }
-                    case 4 -> library.presentBorrowedBooks();
-                    case 5 -> library.presentLostBooks();
-                    case 6 -> library.presentBooks();
-                    case 7 -> library.sortBooksByTitle();
-                    case 8 -> library.sortBooksByAuthorName();
-                    case 9 -> library.sortBooksByISBN();
+                    case 3 -> {
+                        Library.presentStudents();
+                        System.out.print("Please Choose Student ID: ");
+                        String y = scanner.next();
+                        System.out.println();
+                        Librarian.CheckStudentBorrowedBooksByID(y);
+                    }
+                    case 4 -> Library.CheckBorrowedBooks();
+                    case 5 -> Library.CheckLostBooks();
+                    case 6 -> Library.CheckBooks();
+                    case 7 -> Library.SortByTitle();
+                    case 8 -> Library.SortByAuthorName();
+                    case 9 -> Library.SortByISBN();
                     default -> System.out.println("Please choose a number from the list.🤨");
                 }
             }
