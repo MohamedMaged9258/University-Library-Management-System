@@ -67,25 +67,25 @@ public class Helper {
     }
 
     //Student Methods
-    public void presentStudents() {
-        Connection connection = getConnection();
-        Statement statement;
-        try {
-            statement = connection.createStatement();
-            String query = "select * from main.student";
-            ResultSet resultSet = statement.executeQuery(query);
-            int i = 0;
-            while (resultSet.next()) {
-                i++;
-                System.out.println("Student " + i + ": ");
-                System.out.println("    Name: " + resultSet.getString("name"));
-                System.out.println("    Id: " + resultSet.getString("id"));
-                System.out.println("---------------------------------------------------");
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    public void presentStudents() {
+//        Connection connection = getConnection();
+//        Statement statement;
+//        try {
+//            statement = connection.createStatement();
+//            String query = "select * from main.student";
+//            ResultSet resultSet = statement.executeQuery(query);
+//            int i = 0;
+//            while (resultSet.next()) {
+//                i++;
+//                System.out.println("Student " + i + ": ");
+//                System.out.println("    Name: " + resultSet.getString("name"));
+//                System.out.println("    Id: " + resultSet.getString("id"));
+//                System.out.println("---------------------------------------------------");
+//            }
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     public void newStudent(Student student) {
         Connection connection = getConnection();

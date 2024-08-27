@@ -7,11 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Library {
-    private ArrayList<Book> bookArrayList;
-    private ArrayList<Student> studentArrayList;
-    private ArrayList<Librarian> librarianArrayList;
-    private ArrayList<Book> lostBookArrayList;
-    private ArrayList<Book> borrowedBookArrayList;
+    private final ArrayList<Book> bookArrayList;
+    private final ArrayList<Student> studentArrayList;
+    private final ArrayList<Librarian> librarianArrayList;
+    private final ArrayList<Book> lostBookArrayList;
+    private final ArrayList<Book> borrowedBookArrayList;
 
     //Constructors
     public Library(ArrayList<Student> studentArrayList, ArrayList<Librarian> librarianArrayList, ArrayList<Book> bookArrayList, ArrayList<Book> lostBookArrayList, ArrayList<Book> borrowedBookArrayList) {
@@ -42,31 +42,31 @@ public class Library {
         this.studentArrayList.add(student);
     }
 
-    public void addToLibrarianList(Librarian librarian) {
-        this.librarianArrayList.add(librarian);
-    }
-
-    public void addNewBook(Book book) {
-        this.bookArrayList.add(book);
-    }
-
-    public Object searchBookByTitle(String title) {
-        for (Book value : bookArrayList) {
-            if (value.getTitle().equals(title)) {
-                return value;
-            }
-        }
-        return "Not Available";
-    }
-
-    public Object searchBookByAuthorName(String authorName) {
-        for (Book value : bookArrayList) {
-            if (value.getAuthorName().equals(authorName)) {
-                return value;
-            }
-        }
-        return "Not Available";
-    }
+//    public void addToLibrarianList(Librarian librarian) {
+//        this.librarianArrayList.add(librarian);
+//    }
+//
+//    public void addNewBook(Book book) {
+//        this.bookArrayList.add(book);
+//    }
+//
+//    public Object searchBookByTitle(String title) {
+//        for (Book value : bookArrayList) {
+//            if (value.getTitle().equals(title)) {
+//                return value;
+//            }
+//        }
+//        return "Not Available";
+//    }
+//
+//    public Object searchBookByAuthorName(String authorName) {
+//        for (Book value : bookArrayList) {
+//            if (value.getAuthorName().equals(authorName)) {
+//                return value;
+//            }
+//        }
+//        return "Not Available";
+//    }
 
     public Object searchBookByISPN(String ISBN) {
         for (Book value : bookArrayList) {
@@ -201,7 +201,6 @@ public class Library {
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            ;
         }
     }
 
