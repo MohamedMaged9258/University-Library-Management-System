@@ -1,7 +1,5 @@
 package Classes;
 
-import DataBase.Helper;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -11,6 +9,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+
+import static DataBase.Helper.executeQuery;
+import static DataBase.Helper.executeUpdate;
 
 public class Librarian {
     private String name;
@@ -55,9 +56,30 @@ public class Librarian {
     }
 
     //Methods
+    public static void newLibrarian(Librarian librarian) {
+        String query = "insert into librarian (ID, Email, Name, Password)" + "values ('" + librarian.getId() + "', '" + librarian.getEmail() + "', '" + librarian.getName() + "', '" + librarian.getPassword() + "')";
+        executeUpdate(query);
+    }
+
+    public static Object getLibrarian(String userId, String password) {
+        Object librarian;
+        String query = "select * from librarian where id='" + userId + "' and password='" + password + "'";
+        ResultSet resultSet = executeQuery(query);
+        try {
+            if (resultSet.next()) {
+                librarian = new Librarian(resultSet.getString("name"), resultSet.getString("email"), resultSet.getString("password"), resultSet.getString("id"));
+            } else {
+                librarian = null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return librarian;
+    }
+
     public static void CheckStudentBorrowedBooksByID(String userId) {
         String query = "select * from main.borrowed_books inner join main.books on borrowed_books.ISBN = main.books.ISBN where Student_ID='" + userId + "'";
-        ResultSet resultSet = Helper.executeQuery(query);
+        ResultSet resultSet = executeQuery(query);
         int i = 0;
         try {
             if (!resultSet.isBeforeFirst()) {
@@ -94,7 +116,7 @@ public class Librarian {
         System.out.print("Enter if user lost the book how much he will pay: ");
         String lost = scanner.next();
         String query = "insert into books (ISBN, title, Author_Name, Publication_Date, Copies, Delay_Fine, Lost_Fine)" + "values ('" + ISBN + "', '" + title + "', '" + authorName + "', '" + publicationDate + "', '" + numOfCopies + "', '" + breakDueDate + "', '" + lost + "');";
-        Helper.executeUpdate(query);
+        executeUpdate(query);
     }
 
     public static void saveLibrarianToFile(Librarian librarian) {

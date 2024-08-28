@@ -1,9 +1,13 @@
 package Classes;
 
+import DataBase.Helper;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -91,6 +95,27 @@ public class Student {
     }
 
     // Methods
+    public static void newStudent(Student student) {
+        String query = "insert into student (ID, Email, Name, Password)" + "values ('" + student.getId() + "', '" + student.getEmail() + "', '" + student.getName() + "', '" + student.getPassword() + "')";
+        Helper.executeUpdate(query);
+    }
+
+    public static Object getStudent(String userId, String password) {
+        String query = "select * from student where id='" + userId + "' and password='" + password + "'";
+        ResultSet resultSet = Helper.executeQuery(query);
+        Object student;
+        try {
+            if (resultSet.next()) {
+                student = new Student(resultSet.getString("name"), resultSet.getString("email"), resultSet.getString("password"), resultSet.getString("id"));
+            } else {
+                student = null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return student;
+    }
+
     public Object searchBookByISPN(String ISBN) {
         for (Book value : borrowedBooksList) {
             if (value.getISBN().equals(ISBN)) {

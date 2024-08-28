@@ -165,7 +165,7 @@ public class Main {
             if ((Id.charAt(0) + String.valueOf(Id.charAt(1))).equals("SD")) {
                 System.out.print("Please Enter Your Password: ");
                 String password = scanner.next();
-                Object student = helper.getStudent(Id, password);
+                Object student = Student.getStudent(Id, password);
                 if (student instanceof Student) {
                     return student;
                 } else {
@@ -174,7 +174,7 @@ public class Main {
             } else if ((Id.charAt(0) + String.valueOf(Id.charAt(1))).equals("ST")) {
                 System.out.print("Please Enter Your Password: ");
                 String password = scanner.next();
-                Object librarian = helper.getLibrarian(Id, password);
+                Object librarian = Librarian.getLibrarian(Id, password);
                 if (librarian instanceof Librarian) {
                     return librarian;
                 } else {
@@ -205,7 +205,7 @@ public class Main {
                 System.out.print("Please Enter Your Password: ");
                 String password = scanner.next();
                 Librarian librarian = new Librarian(name, email, password);
-                helper.newLibrarian(librarian);
+                Librarian.newLibrarian(librarian);
                 return librarian;
             } else if (x == 2) {
                 System.out.print("Please Enter Your Name: ");
@@ -215,7 +215,7 @@ public class Main {
                 System.out.print("Please Enter Your Password: ");
                 String password = scanner.next();
                 Student student = new Student(name, email, password);
-                helper.newStudent(student);
+                Student.newStudent(student);
                 return student;
             } else System.out.println("Please try again.");
         }
