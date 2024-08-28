@@ -1,6 +1,7 @@
 package Classes;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Date {
@@ -59,26 +60,17 @@ public class Date {
     }
 
     public static Date fromStringtoDate(String s) {
-        StringBuilder tempYear = new StringBuilder();
-        StringBuilder tempMonth = new StringBuilder();
-        StringBuilder tempDay = new StringBuilder();
-        for (int i = 0; i < 4; i++) {
-            tempYear.append(s.charAt(i));
-        }
-        for (int i = 4; i < 6; i++) {
-            tempMonth.append(s.charAt(i));
-        }
-        for (int i = 6; i < 8; i++) {
-            tempDay.append(s.charAt(i));
-        }
-        return new Date(tempYear.toString(), tempMonth.toString(), tempDay.toString());
+        String[] temp = s.split("/");
+        System.out.println(Arrays.toString(temp));
+        String tempYear = temp[0];
+        String tempMonth = temp[1];
+        String tempDay = temp[2];
+        return new Date(tempYear, tempMonth, tempDay);
     }
 
     public static Date setDueDate() {
-        // Get the current date
         LocalDate currentDate = LocalDate.now().plusDays(14);
 
-        // Get the day, month, and year
         int day = currentDate.getDayOfMonth();
         int month = currentDate.getMonthValue();
         int year = currentDate.getYear();
@@ -104,7 +96,9 @@ public class Date {
     }
 
     public String saveStyle() {
-        return year + month + day;
+        return year +
+                "/" + month +
+                "/" + day;
     }
 
     @Override

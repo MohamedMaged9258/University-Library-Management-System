@@ -15,15 +15,10 @@ public class Main {
 //        }
     public static void main(String[] args) {
         Helper helper = new Helper();
-        ArrayList<Student> studentArrayList = Student.loadStudentsFromFile();
-        ArrayList<Librarian> librarianArrayList = Librarian.loadLibrarianFromFile();
-        ArrayList<Book> bookArrayList = Book.loadBooksFromFile();
-        ArrayList<Book> lostBookArrayList = Book.loadLostBooksFromFile();
-        ArrayList<Book> borrowedBookArrayList = Book.loadBorrowedBooksFromFile();
 
         Student student = new Student();
         Librarian librarian = new Librarian();
-        Library library = new Library(studentArrayList, librarianArrayList, bookArrayList, lostBookArrayList, borrowedBookArrayList);
+        Library library = new Library();
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("""
@@ -70,8 +65,6 @@ public class Main {
                 x = scanner.nextInt();
                 switch (x) {
                     case 0 -> {
-                        library.addToStudentList(student);
-                        Library.saveNewFiles(library);
                         System.out.println("Please Remember that your ID is: " + student.getId());
                         running = false;
                     }
@@ -79,29 +72,29 @@ public class Main {
                     case 2 -> student.presentBorrowedBooks();
                     case 3 -> student.presentReturnedBooks();
                     case 4 -> {
-//                        library.presentBooks();
-                        System.out.print("Please Choose Book Number: ");
+                        Library.CheckBooks();
+                        System.out.print("Please Choose Book ISBN: ");
                         int y = scanner.nextInt();
-                        Student.BorrowBook(student, library, library.getBookArrayList().get(y - 1));
+                        student.BorrowBook(y);
                     }
                     case 5 -> {
                         student.presentBorrowedBooks();
-                        System.out.print("Please Choose Book Number: ");
+                        System.out.print("Please Choose Book ISBN: ");
                         int y = scanner.nextInt();
-                        Student.returnBook(student, library, student.getBorrowedBooksList().get(y - 1));
+                        student.returnBook(y);
                     }
                     case 6 -> {
                         student.presentBorrowedBooks();
-                        System.out.print("Please Choose Book Number: ");
+                        System.out.print("Please Choose Book ISBN: ");
                         int y = scanner.nextInt();
-                        Student.lostBook(student, library, student.getBorrowedBooksList().get(y - 1));
+                        student.lostBook(y);
                     }
                     case 7 -> System.out.println("You have to pay: " + student.getFines());
                     case 8 -> {
                         System.out.print("Enter ISBN: ");
-                        String isbn = scanner.next();
+                        int isbn = scanner.nextInt();
                         System.out.println();
-                        if (library.searchBookByISPN(isbn) instanceof Book && ((Book) library.searchBookByISPN(isbn)).getNumOfCopies() > 1) {
+                        if (library.searchBookByISPN(isbn) instanceof Book) {
                             library.presentBook((Book) library.searchBookByISPN(isbn));
                         } else System.out.println("This Book isn't Available At This moment");
                     }

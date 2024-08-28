@@ -1,58 +1,22 @@
 package Classes;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 import static DataBase.Helper.executeQuery;
 import static DataBase.Helper.executeUpdate;
 
-public class Librarian {
-    private String name;
-    private String email;
-    private String password;
-    private String id;
-
-    //Constructors
+public class Librarian extends User {
     public Librarian() {
     }
 
-    public Librarian(String name, String email, String password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        Random random = new Random();
-        this.id = "ST" + String.format("%04d", random.nextInt(10000));
-    }
-
     public Librarian(String name, String email, String password, String id) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.id = id;
+        super(name, email, password, id);
     }
 
-    //Getters
-    public String getName() {
-        return name;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
+    public Librarian(String name, String email, String password) {
+        super(name, email, password);
     }
 
     //Methods
@@ -119,47 +83,17 @@ public class Librarian {
         executeUpdate(query);
     }
 
-    public static void saveLibrarianToFile(Librarian librarian) {
-        try {
-            FileWriter writer = new FileWriter("Librarian.txt", true);
-            writer.write(librarian.toString());
-            writer.close();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public static ArrayList<Librarian> loadLibrarianFromFile() {
-        ArrayList<Librarian> librarianArrayList = new ArrayList<>();
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("Librarian.txt"));
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split("/");
-                Librarian librarian = new Librarian(parts[0], parts[1], parts[2], parts[3]);
-                librarianArrayList.add(librarian);
-            }
-            br.close();
-            FileWriter writer = new FileWriter("Librarian.txt");
-            writer.write("");
-            writer.close();
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-        return librarianArrayList;
-    }
-
     public void showInfo() {
-        System.out.println("Name: " + name);
-        System.out.println("ID: " + id);
-        System.out.println("Email: " + email);
+        System.out.println("Name: " + getName());
+        System.out.println("ID: " + getId());
+        System.out.println("Email: " + getEmail());
     }
 
     @Override
     public String toString() {
-        return name + "/" +
-                email + "/" +
-                password + "/" +
-                id + "\n";
+        return getName() + "/" +
+                getEmail() + "/" +
+                getPassword() + "/" +
+                getId() + "\n";
     }
 }

@@ -21,13 +21,12 @@ public class Book {
     public Book() {
     }
 
-    public Book(String title, String authorName, String ISBN, Date publicationDate, int numOfCopies, String breakDueDate, String lost) {
+    public Book(String title, String authorName, String ISBN, String publicationDate, String dueDate, String lost) {
         this.title = title;
         this.authorName = authorName;
         this.ISBN = ISBN;
-        this.publicationDate = publicationDate;
-        this.numOfCopies = numOfCopies;
-        this.breakDueDate = breakDueDate;
+        this.publicationDate = Date.fromStringtoDate(publicationDate);
+        this.dueDate = Date.fromStringtoDate(dueDate);
         this.lost = lost;
     }
 
