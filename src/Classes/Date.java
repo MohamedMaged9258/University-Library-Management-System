@@ -1,13 +1,12 @@
 package Classes;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Date {
-    private String year;
-    private String month;
-    private String day;
+    private final String year;
+    private final String month;
+    private final String day;
 
     public Date(String year, String month, String day) {
         if (day.length() < 2) {
@@ -34,19 +33,6 @@ public class Date {
         return Integer.parseInt(day);
     }
 
-    //Setters
-    public void setYear(String year) {
-        this.year = year;
-    }
-
-    public void setMonth(String month) {
-        this.month = month;
-    }
-
-    public void setDay(String day) {
-        this.day = day;
-    }
-
     //Methods
     public static Date enterDate() {
         Scanner scanner = new Scanner(System.in);
@@ -61,7 +47,6 @@ public class Date {
 
     public static Date fromStringtoDate(String s) {
         String[] temp = s.split("/");
-        System.out.println(Arrays.toString(temp));
         String tempYear = temp[0];
         String tempMonth = temp[1];
         String tempDay = temp[2];
@@ -76,10 +61,6 @@ public class Date {
         int year = currentDate.getYear();
 
         return new Date(String.valueOf(year), String.valueOf(month), String.valueOf(day));
-    }
-
-    public static Date resetDueDate() {
-        return new Date("0000", "00", "00");
     }
 
     public static boolean brokeDueDate(Date dueDate) {

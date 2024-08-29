@@ -55,11 +55,12 @@ public class Main {
                         1.Show Info
                         2.Your Borrowed Books
                         3.Your Returned Books
-                        4.Borrow Book
-                        5.Return Book
-                        6.Lost Book
-                        7.Show Fines
-                        8.Search by ISBN
+                        4.Your Lost Books
+                        5.Borrow Book
+                        6.Return Book
+                        7.Lost Book
+                        8.Show Fines
+                        9.Search by ISBN
                         """);
                 System.out.print("Choose A Number: ");
                 x = scanner.nextInt();
@@ -71,26 +72,29 @@ public class Main {
                     case 1 -> student.showInfo();
                     case 2 -> student.presentBorrowedBooks();
                     case 3 -> student.presentReturnedBooks();
-                    case 4 -> {
+                    case 4 -> student.presentLostBooks();
+                    case 5 -> {
                         Library.CheckBooks();
                         System.out.print("Please Choose Book ISBN: ");
                         int y = scanner.nextInt();
                         student.BorrowBook(y);
                     }
-                    case 5 -> {
+                    case 6 -> {
                         student.presentBorrowedBooks();
                         System.out.print("Please Choose Book ISBN: ");
                         int y = scanner.nextInt();
                         student.returnBook(y);
                     }
-                    case 6 -> {
-                        student.presentBorrowedBooks();
-                        System.out.print("Please Choose Book ISBN: ");
-                        int y = scanner.nextInt();
-                        student.lostBook(y);
+                    case 7 -> {
+                        if (student.getBorrowedBooks() > 0) {
+                            student.presentBorrowedBooks();
+                            System.out.print("Please Choose Book ISBN: ");
+                            int y = scanner.nextInt();
+                            student.lostBook(y);
+                        } else System.out.println("You have no books");
                     }
-                    case 7 -> System.out.println("You have to pay: " + student.getFines());
-                    case 8 -> {
+                    case 8 -> System.out.println("You have to pay: " + student.getFines());
+                    case 9 -> {
                         System.out.print("Enter ISBN: ");
                         int isbn = scanner.nextInt();
                         System.out.println();

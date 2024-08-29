@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98210c6f-f49d-4794-94b2-425c94a3a513" name="Changes" comment="Updating How Librarian works with DataBase">
-      <change afterPath="$PROJECT_DIR$/src/Classes/User.java" afterDir="false" />
+    <list default="true" id="98210c6f-f49d-4794-94b2-425c94a3a513" name="Changes" comment="Version 1.1&#10;&#10;adding dataBase to the System">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/13d186f5-bdc8-444b-95f7-6fa487143af6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/13d186f5-bdc8-444b-95f7-6fa487143af6.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Book.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Classes/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Date.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Librarian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Librarian.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Library.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Classes/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/LibraryGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/LibraryGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -201,7 +196,8 @@
       <workItem from="1724350171639" duration="5625000" />
       <workItem from="1724690540365" duration="3523000" />
       <workItem from="1724715670104" duration="1521000" />
-      <workItem from="1724839446969" duration="12789000" />
+      <workItem from="1724839446969" duration="14231000" />
+      <workItem from="1724959569008" duration="1128000" />
     </task>
     <task id="LOCAL-00001" summary="Updating How Librarian works with DataBase">
       <option name="closed" value="true" />
@@ -219,7 +215,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724840706731</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Version 1.1&#10;&#10;adding dataBase to the System">
+      <option name="closed" value="true" />
+      <created>1724855685139</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1724855685139</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -291,7 +295,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Updating How Librarian works with DataBase" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updating How Librarian works with DataBase" />
+    <MESSAGE value="Version 1.1&#10;&#10;adding dataBase to the System" />
+    <option name="LAST_COMMIT_MESSAGE" value="Version 1.1&#10;&#10;adding dataBase to the System" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
