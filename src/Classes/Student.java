@@ -14,7 +14,7 @@ public class Student extends User {
     }
 
     public Student(String name, String email, String password) {
-        super(name, email, password);
+        super(name, email, password, 's');
     }
 
     public Student(String name, String email, String password, String id, int borrowedBooks, int fines) {
@@ -37,10 +37,10 @@ public class Student extends User {
         Helper.executeUpdate(query);
     }
 
-    public static Object getStudent(String userId, String password) {
+    public static Student getStudent(String userId, String password) {
         String query = "select * from student where id='" + userId + "' and password='" + password + "'";
         ResultSet resultSet = Helper.executeQuery(query);
-        Object student;
+        Student student;
         try {
             if (resultSet.next()) {
                 student = new Student(resultSet.getString("name"), resultSet.getString("email"), resultSet.getString("password"), resultSet.getString("id"), Integer.parseInt(resultSet.getString("Num_of_Borrowed_books")), Integer.parseInt(resultSet.getString("fines")));

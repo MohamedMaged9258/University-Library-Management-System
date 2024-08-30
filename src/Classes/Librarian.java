@@ -16,7 +16,7 @@ public class Librarian extends User {
     }
 
     public Librarian(String name, String email, String password) {
-        super(name, email, password);
+        super(name, email, password, 'l');
     }
 
     //Methods
@@ -25,8 +25,8 @@ public class Librarian extends User {
         executeUpdate(query);
     }
 
-    public static Object getLibrarian(String userId, String password) {
-        Object librarian;
+    public static Librarian getLibrarian(String userId, String password) {
+        Librarian librarian;
         String query = "select * from librarian where id='" + userId + "' and password='" + password + "'";
         ResultSet resultSet = executeQuery(query);
         try {

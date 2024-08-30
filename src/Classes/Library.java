@@ -12,19 +12,21 @@ public class Library {
 
     }
 
-    public static Object searchBookByISPN(int ISBN) {
+    public static Book searchBookByISPN(int ISBN) {
         String query = "SELECT * FROM books WHERE ISBN = '" + ISBN + "'";
         ResultSet resultSet = Helper.executeQuery(query);
+        Book book;
         try {
             if (!resultSet.isBeforeFirst()) {
-                return "Not Available";
+                book = null;
             } else {
                 resultSet.next();
-                return new Book(resultSet.getString("title"), resultSet.getString("author_Name"), resultSet.getString("isbn"), resultSet.getString("publication_date"), resultSet.getString("delay_fine"), resultSet.getString("lost_fine"));
+                book = new Book(resultSet.getString("title"), resultSet.getString("author_Name"), resultSet.getString("isbn"), resultSet.getString("publication_date"), resultSet.getString("delay_fine"), resultSet.getString("lost_fine"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return book;
     }
 
     public static void CheckBooks() {

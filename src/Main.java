@@ -4,15 +4,12 @@ import Classes.Library;
 import Classes.Student;
 import DataBase.Helper;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    //        public static void main(String[] args) {
-//            Helper helper = new Helper();
-//            Librarian librarian = new Librarian("temp", "temp@gmail.com", "12345");
-//            helper.newLibrarian(librarian);
-//        }
     public static void main(String[] args) {
         Helper helper = new Helper();
 
@@ -98,8 +95,9 @@ public class Main {
                         System.out.print("Enter ISBN: ");
                         int isbn = scanner.nextInt();
                         System.out.println();
-                        if (library.searchBookByISPN(isbn) instanceof Book) {
-                            library.presentBook((Book) library.searchBookByISPN(isbn));
+                        Book book = library.searchBookByISPN(isbn);
+                        if (book != null) {
+                            library.presentBook(book);
                         } else System.out.println("This Book isn't Available At This moment");
                     }
                     default -> System.out.println("Please choose a number from the list.🤨");
@@ -152,8 +150,6 @@ public class Main {
     }
 
     public static Object sign_in() {
-//        new SignInGUI(students, librarianArrayList);
-//        return null;
         Helper helper = new Helper();
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -162,8 +158,8 @@ public class Main {
             if ((Id.charAt(0) + String.valueOf(Id.charAt(1))).equals("SD")) {
                 System.out.print("Please Enter Your Password: ");
                 String password = scanner.next();
-                Object student = Student.getStudent(Id, password);
-                if (student instanceof Student) {
+                Student student = Student.getStudent(Id, password);
+                if (student != null) {
                     return student;
                 } else {
                     System.out.println("Please Check your ID Or Password and try again.😊");
@@ -171,8 +167,8 @@ public class Main {
             } else if ((Id.charAt(0) + String.valueOf(Id.charAt(1))).equals("ST")) {
                 System.out.print("Please Enter Your Password: ");
                 String password = scanner.next();
-                Object librarian = Librarian.getLibrarian(Id, password);
-                if (librarian instanceof Librarian) {
+                Librarian librarian = Librarian.getLibrarian(Id, password);
+                if (librarian != null) {
                     return librarian;
                 } else {
                     System.out.println("Please Check your ID Or Password and try again.😊");
@@ -217,5 +213,4 @@ public class Main {
             } else System.out.println("Please try again.");
         }
     }
-
 }
