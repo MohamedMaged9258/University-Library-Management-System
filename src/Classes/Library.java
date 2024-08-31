@@ -21,7 +21,7 @@ public class Library {
                 book = null;
             } else {
                 resultSet.next();
-                book = new Book(resultSet.getString("title"), resultSet.getString("author_Name"), resultSet.getString("isbn"), resultSet.getString("publication_date"), resultSet.getString("delay_fine"), resultSet.getString("lost_fine"));
+                book = new Book(resultSet.getString("title"), resultSet.getString("author_Name"), resultSet.getString("isbn"), resultSet.getString("publication_date"), resultSet.getString("delay_fine"), resultSet.getString("lost_fine"), Integer.parseInt(resultSet.getString("copies")));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -75,7 +75,7 @@ public class Library {
         System.out.println("Title: " + book.getTitle());
         System.out.println("Author Name: " + book.getAuthorName());
         System.out.println("ISBN: " + book.getISBN());
-        System.out.println("Number Of Available: " + (book.getNumOfCopies() - 1));
+        System.out.println("Number Of Available: " + book.getNumOfCopies());
         System.out.println("If you return the book after Due Date you will Pay: " + book.getBreakDueDate());
         System.out.println("If you lost the book you will Pay: " + book.getLost());
         System.out.println("----------------------------------------");

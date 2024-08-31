@@ -10,13 +10,14 @@ public class Book {
     private final Date publicationDate;
 
     //Constructors
-    public Book(String title, String authorName, String ISBN, String publicationDate, String breakDueDate, String lost) {
+    public Book(String title, String authorName, String ISBN, String publicationDate, String breakDueDate, String lost, int numOfCopies) {
         this.title = title;
         this.authorName = authorName;
         this.ISBN = ISBN;
         this.publicationDate = Date.fromStringtoDate(publicationDate);
         this.breakDueDate = breakDueDate;
         this.lost = lost;
+        this.numOfCopies = numOfCopies;
     }
 
     //Getters
