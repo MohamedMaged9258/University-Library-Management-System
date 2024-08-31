@@ -112,6 +112,8 @@ public class Student extends User {
                     fines += Integer.parseInt(resultSet.getString("delay_fine"));
                     query = "update student set fines = " + fines + " where student_id='" + getId() + "';";
                     Helper.executeUpdate(query);
+                    query = "insert into fines (ISBN, Student_ID, Fine_Type) values ('" + ISBN + "', '" + getId() + "', 'DueDate Break');";
+                    Helper.executeUpdate(query);
                 }
             }
         } catch (SQLException e) {
@@ -135,6 +137,8 @@ public class Student extends User {
                 Helper.executeUpdate(query);
                 fines += Integer.parseInt(resultSet.getString("lost_fine"));
                 query = "update student set fines = " + fines + " where id='" + getId() + "';";
+                Helper.executeUpdate(query);
+                query = "insert into fines (ISBN, Student_ID, Fine_Type) values ('" + ISBN + "', '" + getId() + "', 'Lost The Book');";
                 Helper.executeUpdate(query);
                 borrowedBooks--;
             }
