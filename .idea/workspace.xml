@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98210c6f-f49d-4794-94b2-425c94a3a513" name="Changes" comment="Version 1.4&#10;&#10;fixing the fine calculator.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Library.java" afterDir="false" />
-    </list>
+    <list default="true" id="98210c6f-f49d-4794-94b2-425c94a3a513" name="Changes" comment="Version 1.5&#10;&#10;fixing a problem in showing the number of copies for a book" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -196,7 +192,8 @@
       <workItem from="1724839446969" duration="14231000" />
       <workItem from="1724959569008" duration="2981000" />
       <workItem from="1725020777439" duration="2800000" />
-      <workItem from="1725127009401" duration="3123000" />
+      <workItem from="1725127009401" duration="4145000" />
+      <workItem from="1725184248492" duration="7742000" />
     </task>
     <task id="LOCAL-00001" summary="Updating How Librarian works with DataBase">
       <option name="closed" value="true" />
@@ -246,7 +243,23 @@
       <option name="project" value="LOCAL" />
       <updated>1725132526142</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Version 1.5&#10;&#10;fixing a problem in showing the number of copies for a book">
+      <option name="closed" value="true" />
+      <created>1725133604542</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1725133604542</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Version 1.5&#10;&#10;fixing a problem in showing the number of copies for a book">
+      <option name="closed" value="true" />
+      <created>1725192496785</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1725192496785</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,6 +292,11 @@
     </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="7238ec8f-76ba-4af9-9a74-d3c15fabe568" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="RECENT_FILTERS">
       <map>
         <entry key="Branch">
@@ -296,6 +314,31 @@
     </option>
     <option name="TAB_STATES">
       <map>
+        <entry key="7238ec8f-76ba-4af9-9a74-d3c15fabe568">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:D:/Codes/GitHub/University-Library-Management-System/src" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -322,7 +365,8 @@
     <MESSAGE value="Version 1.2&#10;&#10;fixing some bugs" />
     <MESSAGE value="Version 1.3&#10;&#10;removing the return object methods,&#10;fixing some bugs" />
     <MESSAGE value="Version 1.4&#10;&#10;fixing the fine calculator." />
-    <option name="LAST_COMMIT_MESSAGE" value="Version 1.4&#10;&#10;fixing the fine calculator." />
+    <MESSAGE value="Version 1.5&#10;&#10;fixing a problem in showing the number of copies for a book" />
+    <option name="LAST_COMMIT_MESSAGE" value="Version 1.5&#10;&#10;fixing a problem in showing the number of copies for a book" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
