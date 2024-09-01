@@ -25,16 +25,18 @@ public class Librarian extends User {
 
     //Methods
     public static String generate_id() {
-        String query = "select count(*) from librarian";
+        String query = "select id from librarian order by id desc limit 1;";
         ResultSet resultSet = Helper.executeQuery(query);
-        int count;
+        String count;
+        int id;
         try {
             resultSet.next();
-            count = resultSet.getInt(1);
+            count = resultSet.getString(1);
+            id = Integer.parseInt(count.substring(2, 6));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return "ST" + String.format("%04d", (count + 1));
+        return "ST" + String.format("%04d", (id + 1));
     }
 
     public static void newLibrarian(Librarian librarian) {

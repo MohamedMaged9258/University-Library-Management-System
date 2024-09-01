@@ -35,17 +35,18 @@ public class Student extends User {
 
     // Methods
     public static String generate_id() {
-//        String query = "select count(*) from student";
-        String query = "select count(*) from student";
+        String query = "select id from student order by id desc limit 1;";
         ResultSet resultSet = Helper.executeQuery(query);
-        int count;
+        String count;
+        int id;
         try {
             resultSet.next();
-            count = resultSet.getInt(1);
+            count = resultSet.getString(1);
+            id = Integer.parseInt(count.substring(2, 6));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return "SD" + String.format("%04d", (count + 1));
+        return "SD" + String.format("%04d", (id + 1));
     }
 
     public static void newStudent(Student student) {
