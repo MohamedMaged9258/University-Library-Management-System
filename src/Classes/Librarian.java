@@ -1,5 +1,9 @@
 package Classes;
 
+import DataBase.Helper;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -16,10 +20,25 @@ public class Librarian extends User {
     }
 
     public Librarian(String name, String email, String password) {
-        super(name, email, password, 'l');
+        super(name, email, password, generate_id());
     }
 
     //Methods
+    public static String generate_id() {
+        String query = "select id from librarian order by id desc limit 1;";
+        ResultSet resultSet = Helper.executeQuery(query);
+        String count;
+        int id;
+        try {
+            resultSet.next();
+            count = resultSet.getString(1);
+            id = Integer.parseInt(count.substring(2, 6));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return "ST" + String.format("%04d", (id + 1));
+    }
+
     public static void newLibrarian(Librarian librarian) {
         String query = "insert into librarian (ID, Email, Name, Password)" + "values ('" + librarian.getId() + "', '" + librarian.getEmail() + "', '" + librarian.getName() + "', '" + librarian.getPassword() + "')";
         executeUpdate(query);
@@ -27,9 +46,14 @@ public class Librarian extends User {
 
     public static Librarian getLibrarian(String userId, String password) {
         Librarian librarian;
-        String query = "select * from librarian where id='" + userId + "' and password='" + password + "'";
-        ResultSet resultSet = executeQuery(query);
+        String query = "select * from librarian where id= ? and password= ?";
+        Connection connection = Helper.getConnection();
+        ResultSet resultSet;
         try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, userId);
+            preparedStatement.setString(2, password);
+            resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 librarian = new Librarian(resultSet.getString("name"), resultSet.getString("email"), resultSet.getString("password"), resultSet.getString("id"));
             } else {
