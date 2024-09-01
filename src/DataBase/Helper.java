@@ -7,7 +7,7 @@ public class Helper {
     static String user = "root";
     static String password = "root";
 
-    public static Connection getConnection() {
+    private static Connection getConnection() {
         Connection connection;
         try {
             connection = DriverManager.getConnection(url, user, password);

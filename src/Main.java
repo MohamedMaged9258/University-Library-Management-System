@@ -4,8 +4,9 @@ import Classes.Library;
 import Classes.Student;
 import DataBase.Helper;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -156,8 +157,7 @@ public class Main {
             String Id = scanner.next();
             if ((Id.charAt(0) + String.valueOf(Id.charAt(1))).equals("SD")) {
                 System.out.print("Please Enter Your Password: ");
-                scanner.nextLine();
-                String password = MessageDigest(scanner.nextLine());
+                String password = scanner.next();
                 Student student = Student.getStudent(Id, password);
                 if (student != null) {
                     return student;
@@ -166,8 +166,7 @@ public class Main {
                 }
             } else if ((Id.charAt(0) + String.valueOf(Id.charAt(1))).equals("ST")) {
                 System.out.print("Please Enter Your Password: ");
-                scanner.nextLine();
-                String password = MessageDigest(scanner.nextLine());
+                String password = scanner.next();
                 Librarian librarian = Librarian.getLibrarian(Id, password);
                 if (librarian != null) {
                     return librarian;
@@ -197,7 +196,7 @@ public class Main {
                 System.out.print("Please Enter Your Email: ");
                 String email = scanner.nextLine();
                 System.out.print("Please Enter Your Password: ");
-                String password = MessageDigest(scanner.nextLine());
+                String password = scanner.next();
                 Librarian librarian = new Librarian(name, email, password);
                 Librarian.newLibrarian(librarian);
                 return librarian;
@@ -207,29 +206,11 @@ public class Main {
                 System.out.print("Please Enter Your Email: ");
                 String email = scanner.nextLine();
                 System.out.print("Please Enter Your Password: ");
-                String password = MessageDigest(scanner.nextLine());
+                String password = scanner.next();
                 Student student = new Student(name, email, password);
                 Student.newStudent(student);
                 return student;
             } else System.out.println("Please try again.");
         }
-    }
-
-    public static String MessageDigest(String password) {
-        MessageDigest md = null;
-        try {
-            md = MessageDigest.getInstance("SHA-256");
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-        byte[] hash = md.digest(password.getBytes());
-
-        StringBuilder hexString = new StringBuilder();
-        for (byte b : hash) {
-            String hex = Integer.toHexString(0xff & b);
-            if (hex.length() == 1) hexString.append('0');
-            hexString.append(hex);
-        }
-        return hexString.toString();
     }
 }

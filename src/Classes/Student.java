@@ -2,8 +2,6 @@ package Classes;
 
 import DataBase.Helper;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -16,7 +14,7 @@ public class Student extends User {
     }
 
     public Student(String name, String email, String password) {
-        super(name, email, password, generate_id());
+        super(name, email, password, 's');
     }
 
     public Student(String name, String email, String password, String id, int borrowedBooks, int fines) {
@@ -34,35 +32,16 @@ public class Student extends User {
     }
 
     // Methods
-    public static String generate_id() {
-//        String query = "select count(*) from student";
-        String query = "select count(*) from student";
-        ResultSet resultSet = Helper.executeQuery(query);
-        int count;
-        try {
-            resultSet.next();
-            count = resultSet.getInt(1);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return "SD" + String.format("%04d", (count + 1));
-    }
-
     public static void newStudent(Student student) {
         String query = "insert into student (ID, Email, Name, Password)" + "values ('" + student.getId() + "', '" + student.getEmail() + "', '" + student.getName() + "', '" + student.getPassword() + "')";
         Helper.executeUpdate(query);
     }
 
     public static Student getStudent(String userId, String password) {
-        String query = "select * from student where id= ? and password= ? ";
-        Connection connection = Helper.getConnection();
-        ResultSet resultSet;
+        String query = "select * from student where id='" + userId + "' and password='" + password + "'";
+        ResultSet resultSet = Helper.executeQuery(query);
         Student student;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, userId);
-            preparedStatement.setString(2, password);
-            resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 student = new Student(resultSet.getString("name"), resultSet.getString("email"), resultSet.getString("password"), resultSet.getString("id"), Integer.parseInt(resultSet.getString("Num_of_Borrowed_books")), Integer.parseInt(resultSet.getString("fines")));
             } else {
