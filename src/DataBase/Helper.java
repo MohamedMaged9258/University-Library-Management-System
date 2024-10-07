@@ -40,4 +40,27 @@ public class Helper {
             throw new RuntimeException(e);
         }
     }
+
+    public static String generate_id(char userType) {
+        String query;
+        String output;
+        if (userType == 's') {
+            query = "select id from student order by id desc limit 1;";
+            output = "SD";
+        } else {
+            query = "select id from librarian order by id desc limit 1;";
+            output = "ST";
+        }
+        ResultSet resultSet = Helper.executeQuery(query);
+        String count;
+        int id;
+        try {
+            resultSet.next();
+            count = resultSet.getString(1);
+            id = Integer.parseInt(count.substring(2, 6));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return output + String.format("%04d", (id + 1));
+    }
 }

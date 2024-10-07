@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98210c6f-f49d-4794-94b2-425c94a3a513" name="Changes" comment="Version 1.5&#10;&#10;fixing a problem in showing the number of copies for a book" />
+    <list default="true" id="98210c6f-f49d-4794-94b2-425c94a3a513" name="Changes" comment="Version 1.7&#10;fixing the auto increments for id">
+      <change afterPath="$PROJECT_DIR$/src/Service/Librarian_Service.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/Student_Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/13d186f5-bdc8-444b-95f7-6fa487143af6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/13d186f5-bdc8-444b-95f7-6fa487143af6.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Librarian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Librarian.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataBase/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataBase/Helper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,39 +74,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Helper.executor": "Run",
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "dart.analysis.tool.window.visible": "false",
-    "database.data.extractors.current.export.id": "Excel (xlsx)",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "Data__Base",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/moham/Downloads/Book1.csv",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "show.migrate.to.gradle.popup": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Helper.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;JSON-Groovy.json.groovy&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Security&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/moham/Downloads/Book1.csv&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Codes\GitHub\University-Library-Management-System\src\DataBase\Connector_Jar" />
@@ -194,6 +204,10 @@
       <workItem from="1725020777439" duration="2800000" />
       <workItem from="1725127009401" duration="4145000" />
       <workItem from="1725184248492" duration="7742000" />
+      <workItem from="1726490443696" duration="154000" />
+      <workItem from="1727899702063" duration="1112000" />
+      <workItem from="1727964959113" duration="1225000" />
+      <workItem from="1728317993210" duration="1214000" />
     </task>
     <task id="LOCAL-00001" summary="Updating How Librarian works with DataBase">
       <option name="closed" value="true" />
@@ -259,7 +273,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725192496785</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Version 1.7&#10;fixing the auto increments for id">
+      <option name="closed" value="true" />
+      <created>1725197856538</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1725197856538</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -365,8 +387,11 @@
     <MESSAGE value="Version 1.2&#10;&#10;fixing some bugs" />
     <MESSAGE value="Version 1.3&#10;&#10;removing the return object methods,&#10;fixing some bugs" />
     <MESSAGE value="Version 1.4&#10;&#10;fixing the fine calculator." />
+    <MESSAGE value="Version 1.7&#10;&#10;fixing the auto increments for id" />
     <MESSAGE value="Version 1.5&#10;&#10;fixing a problem in showing the number of copies for a book" />
-    <option name="LAST_COMMIT_MESSAGE" value="Version 1.5&#10;&#10;fixing a problem in showing the number of copies for a book" />
+    <MESSAGE value="Merge pull request #2 from MohamedMaged9258/securiy-clone&#10;&#10;Version 1.6" />
+    <MESSAGE value="Version 1.7&#10;fixing the auto increments for id" />
+    <option name="LAST_COMMIT_MESSAGE" value="Version 1.7&#10;fixing the auto increments for id" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

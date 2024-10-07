@@ -3,6 +3,8 @@ import Classes.Librarian;
 import Classes.Library;
 import Classes.Student;
 import DataBase.Helper;
+import Service.Librarian_Service;
+import Service.Student_Service;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -45,6 +47,7 @@ public class Main {
         boolean running = true;
         if (x == 1) {
             while (running) {
+                Student_Service student_service = new Student_Service(student);
                 System.out.println("""
                         \n
                         0.Quit
@@ -66,27 +69,27 @@ public class Main {
                         running = false;
                     }
                     case 1 -> student.showInfo();
-                    case 2 -> student.presentBorrowedBooks();
-                    case 3 -> student.presentReturnedBooks();
-                    case 4 -> student.presentLostBooks();
+                    case 2 -> student_service.presentBorrowedBooks();
+                    case 3 -> student_service.presentReturnedBooks();
+                    case 4 -> student_service.presentLostBooks();
                     case 5 -> {
                         Library.CheckBooks();
                         System.out.print("Please Choose Book ISBN: ");
                         int y = scanner.nextInt();
-                        student.BorrowBook(y);
+                        student_service.BorrowBook(y);
                     }
                     case 6 -> {
-                        student.presentBorrowedBooks();
+                        student_service.presentBorrowedBooks();
                         System.out.print("Please Choose Book ISBN: ");
                         int y = scanner.nextInt();
-                        student.returnBook(y);
+                        student_service.returnBook(y);
                     }
                     case 7 -> {
                         if (student.getBorrowedBooks() > 0) {
-                            student.presentBorrowedBooks();
+                            student_service.presentBorrowedBooks();
                             System.out.print("Please Choose Book ISBN: ");
                             int y = scanner.nextInt();
-                            student.lostBook(y);
+                            student_service.lostBook(y);
                         } else System.out.println("You have no books");
                     }
                     case 8 -> System.out.println("You have to pay: " + student.getFines());
@@ -127,14 +130,14 @@ public class Main {
                     }
                     case 1 -> librarian.showInfo();
                     case 2 -> {
-                        Librarian.addNewBook();
+                        Librarian_Service.addNewBook();
                     }
                     case 3 -> {
                         Library.presentStudents();
                         System.out.print("Please Choose Student ID: ");
                         String y = scanner.next();
                         System.out.println();
-                        Librarian.CheckStudentBorrowedBooksByID(y);
+                        Librarian_Service.CheckStudentBorrowedBooksByID(y);
                     }
                     case 4 -> Library.CheckBorrowedBooks();
                     case 5 -> Library.CheckLostBooks();
@@ -158,7 +161,7 @@ public class Main {
                 System.out.print("Please Enter Your Password: ");
                 scanner.nextLine();
                 String password = MessageDigest(scanner.nextLine());
-                Student student = Student.getStudent(Id, password);
+                Student student = Student_Service.getStudent(Id, password);
                 if (student != null) {
                     return student;
                 } else {
@@ -168,7 +171,7 @@ public class Main {
                 System.out.print("Please Enter Your Password: ");
                 scanner.nextLine();
                 String password = MessageDigest(scanner.nextLine());
-                Librarian librarian = Librarian.getLibrarian(Id, password);
+                Librarian librarian = Librarian_Service.getLibrarian(Id, password);
                 if (librarian != null) {
                     return librarian;
                 } else {
@@ -199,7 +202,7 @@ public class Main {
                 System.out.print("Please Enter Your Password: ");
                 String password = MessageDigest(scanner.nextLine());
                 Librarian librarian = new Librarian(name, email, password);
-                Librarian.newLibrarian(librarian);
+                Librarian_Service.newLibrarian(librarian);
                 return librarian;
             } else if (x == 2) {
                 System.out.print("Please Enter Your Name: ");
@@ -209,7 +212,7 @@ public class Main {
                 System.out.print("Please Enter Your Password: ");
                 String password = MessageDigest(scanner.nextLine());
                 Student student = new Student(name, email, password);
-                Student.newStudent(student);
+                Student_Service.newStudent(student);
                 return student;
             } else System.out.println("Please try again.");
         }
