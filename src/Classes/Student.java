@@ -1,189 +1,295 @@
 package Classes;
 
-import DataBase.Helper;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-public class Student extends User {
+public class Student {
+    private String name;
+    private String email;
+    private String password;
+    private String id;
     private int borrowedBooks;
     private final int maximumNumberOfBooksBorrowed = 5;
     private int fines = 0;
+    private ArrayList<Book> borrowedBooksList = new ArrayList<>();
+    private ArrayList<Book> lostBookArrayList = new ArrayList<>();
+    private ArrayList<Book> returnedBookArrayList = new ArrayList<>();
 
+    //Constructors
     public Student() {
     }
 
     public Student(String name, String email, String password) {
-        super(name, email, password, generate_id());
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.id = generateId();
     }
 
-    public Student(String name, String email, String password, String id, int borrowedBooks, int fines) {
-        super(name, email, password, id);
+    public Student(String name, String email, String password, String id, int borrowedBooks, ArrayList<Book> borrowedBooksList, ArrayList<Book> lostBookArrayList, ArrayList<Book> returnedBookArrayList, int fines) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.id = id;
         this.borrowedBooks = borrowedBooks;
+        this.borrowedBooksList = borrowedBooksList;
+        this.lostBookArrayList = lostBookArrayList;
+        this.returnedBookArrayList = returnedBookArrayList;
         this.fines = fines;
+    }
+
+    // Getters
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public int getBorrowedBooks() {
         return borrowedBooks;
     }
 
+    public int getMaximumNumberOfBooksBorrowed() {
+        return maximumNumberOfBooksBorrowed;
+    }
+
     public String getFines() {
         return "$" + fines;
     }
 
+    public ArrayList<Book> getBorrowedBooksList() {
+        return borrowedBooksList;
+    }
+
+    public ArrayList<Book> getLostBookArrayList() {
+        return lostBookArrayList;
+    }
+
+    public ArrayList<Book> getReturnedBookArrayList() {
+        return returnedBookArrayList;
+    }
+
     // Methods
-    public static String generate_id() {
-        String query = "select id from student order by id desc limit 1;";
-        ResultSet resultSet = Helper.executeQuery(query);
-        String count;
-        int id;
-        try {
-            resultSet.next();
-            count = resultSet.getString(1);
-            id = Integer.parseInt(count.substring(2, 6));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return "SD" + String.format("%04d", (id + 1));
-    }
-
-    public static void newStudent(Student student) {
-        String query = "insert into student (ID, Email, Name, Password)" + "values ('" + student.getId() + "', '" + student.getEmail() + "', '" + student.getName() + "', '" + student.getPassword() + "')";
-        Helper.executeUpdate(query);
-    }
-
-    public static Student getStudent(String userId, String password) {
-        String query = "select * from student where id= ? and password= ? ";
-        Connection connection = Helper.getConnection();
-        ResultSet resultSet;
-        Student student;
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, userId);
-            preparedStatement.setString(2, password);
-            resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                student = new Student(resultSet.getString("name"), resultSet.getString("email"), resultSet.getString("password"), resultSet.getString("id"), Integer.parseInt(resultSet.getString("Num_of_Borrowed_books")), Integer.parseInt(resultSet.getString("fines")));
-            } else {
-                student = null;
+    public Object searchBookByISPN(String ISBN) {
+        for (Book value : borrowedBooksList) {
+            if (value.getISBN().equals(ISBN)) {
+                return value;
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
-        return student;
+        return "Not Available";
     }
 
     public void presentBorrowedBooks() {
-        String query = "select * from borrowed_books join books on borrowed_books.ISBN = books.ISBN where student_id='" + getId() + "'";
-        Library.listBooks(query);
+        if (borrowedBooksList.size() != 0) {
+            System.out.println("Your Borrowed Books is :");
+            for (int i = 0; i < borrowedBooksList.size(); i++) {
+                System.out.println("Book " + (i + 1) + ": ");
+                System.out.println("Title: " + borrowedBooksList.get(i).getTitle());
+                System.out.println("Author Name: " + borrowedBooksList.get(i).getAuthorName());
+                System.out.println("Due Date: " + borrowedBooksList.get(i).getDueDate().toString());
+                System.out.println("---------------------------------");
+            }
+        } else System.out.println("You Don't Have Books to Show.");
     }
 
     public void presentLostBooks() {
-        String query = "select * from lost_books join books on lost_books.ISBN = books.ISBN where student_id='" + getId() + "'";
-        Library.listBooks(query);
+        if (lostBookArrayList.size() != 0){
+        System.out.println("Your Lost Books is :");
+        for (int i = 0; i < lostBookArrayList.size(); i++) {
+            System.out.println("Book " + (i + 1) + ": ");
+            System.out.println("Title: " + lostBookArrayList.get(i).getTitle());
+            System.out.println("Author Name: " + lostBookArrayList.get(i).getAuthorName());
+            System.out.println("---------------------------------");
+        }}else System.out.println("You Don't Have Books to Show.");
     }
 
     public void presentReturnedBooks() {
-        String query = "select * from returned_books join books on returned_books.ISBN = books.ISBN where student_id='" + getId() + "'";
-        Library.listBooks(query);
+        if (returnedBookArrayList.size() != 0){
+        System.out.println("Your Returned Books is :");
+        for (int i = 0; i < returnedBookArrayList.size(); i++) {
+            System.out.println("Book " + (i + 1) + ": ");
+            System.out.println("Title: " + returnedBookArrayList.get(i).getTitle());
+            System.out.println("Author Name: " + returnedBookArrayList.get(i).getAuthorName());
+            System.out.println("Due Date was: " + returnedBookArrayList.get(i).getDueDate().toString());
+            System.out.println("---------------------------------");
+        }}
+        else System.out.println("You Don't Have Books to Show.");
     }
 
-    public void BorrowBook(int ISBN) {
-        String query = "select * from books where ISBN = '" + ISBN + "'";
-        ResultSet resultSet = Helper.executeQuery(query);
-        try {
-            if (!resultSet.isBeforeFirst()) {
-                System.out.println("That book isn't with you.");
-            } else if (getBorrowedBooks() < maximumNumberOfBooksBorrowed) {
-                resultSet.next();
-                if (Integer.parseInt(resultSet.getString("copies")) > 1) {
-                    query = "insert into borrowed_books (ISBN, Due_Date, Student_ID) values (" + ISBN + ", '" + Date.setDueDate() + "', '" + getId() + "');";
-                    Helper.executeUpdate(query);
-                    query = "update books set Copies = Copies -1 where ISBN = '" + ISBN + "'";
-                    Helper.executeUpdate(query);
-                    query = "update student set Num_of_Borrowed_books = Num_of_Borrowed_books +1 where id = '" + getId() + "';";
-                    Helper.executeUpdate(query);
-                    borrowedBooks++;
-                } else System.out.println("Sorry the Book isn't available right now.");
+    public void addToBorrowedBooksList(Book book) {
+        book.setDueDate(Date.setDueDate());
+        book.setStudentId(id);
+        borrowedBooksList.add(book);
+        borrowedBooks++;
+    }
+
+    public void addToReturnBooksList(Book book) {
+        if (Date.brokeDueDate(book.getDueDate())) {
+            fines = fines + Integer.parseInt(book.getBreakDueDate());
+        }
+        returnedBookArrayList.add(book);
+        borrowedBooks--;
+        borrowedBooksList.remove(book);
+    }
+
+    public void addToLostBooksList(Book book) {
+        fines = fines + Integer.parseInt(book.getLost());
+        lostBookArrayList.add(book);
+        borrowedBooksList.remove(book);
+        borrowedBooks--;
+    }
+
+    public static void BorrowBook(Student student, Library library, Book book) {
+        if (student.getBorrowedBooks() < student.maximumNumberOfBooksBorrowed && book.getNumOfCopies() > 1) {
+            if (library.searchBookByISPN(book.getISBN()) instanceof Book) {
+                student.addToBorrowedBooksList(book);
+                library.addToBorrowedBooksList(book);
             } else System.out.println("Sorry the Book isn't available right now.");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } else System.out.println("Sorry the Book isn't available right now.");
+    }
+
+    public static void returnBook(Student student, Library library, Book book) {
+        if (student.searchBookByISPN(book.getISBN()) instanceof Book) {
+            student.addToReturnBooksList(book);
+            library.returnBook(book);
+        } else System.out.println("That book isn't with you.");
+    }
+
+    public static void lostBook(Student student, Library library, Book book) {
+        if (student.searchBookByISPN(book.getISBN()) instanceof Book) {
+            student.addToLostBooksList(book);
+        } else System.out.println("That book isn't with you.");
+    }
+
+    private String generateId() {
+        Random random = new Random();
+        return "SD" + String.format("%04d", random.nextInt(10000));
+    }
+
+    public static void saveStudentToFile(Student student) {
+        try {
+            FileWriter writer = new FileWriter("Students.txt", true);
+            writer.write(student.saveStyle());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public void returnBook(int ISBN) {
-        String query = "select * from books inner join borrowed_books on borrowed_books.isbn = books.isbn where student_id = '" + getId() + "';";
-        ResultSet resultSet = Helper.executeQuery(query);
+    public static ArrayList<Student> loadStudentsFromFile() {
+        ArrayList<Student> students = new ArrayList<>();
         try {
-            if (!resultSet.isBeforeFirst()) {
-                System.out.println("That book isn't with you.");
-            } else {
-                resultSet.next();
-                query = "insert into returned_books (ISBN, Student_ID) values (" + ISBN + ", '" + getId() + "');";
-                Helper.executeUpdate(query);
-                query = "update books set Copies = Copies + 1 where ISBN = '" + ISBN + "';";
-                Helper.executeUpdate(query);
-                query = "update student set Num_of_Borrowed_books = Num_of_Borrowed_books - 1 where id = '" + getId() + "';";
-                Helper.executeUpdate(query);
-                query = "delete from borrowed_books where student_id='" + getId() + "' and isbn = '" + ISBN + "';";
-                Helper.executeUpdate(query);
-                borrowedBooks--;
-                if (Date.brokeDueDate(Date.fromStringtoDate(resultSet.getString("due_date")))) {
-                    fines += Integer.parseInt(resultSet.getString("delay_fine"));
-                    query = "update student set fines = " + fines + " where student_id='" + getId() + "';";
-                    Helper.executeUpdate(query);
-                    query = "insert into fines (ISBN, Student_ID, Fine_Type) values ('" + ISBN + "', '" + getId() + "', 'DueDate Break');";
-                    Helper.executeUpdate(query);
+            BufferedReader br = new BufferedReader(new FileReader("Students.txt"));
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split("/");
+                ArrayList<Book> borrowedBooksList = new ArrayList<>();
+                parts[6] = parts[6].replace("[", "").replace("]", "");
+                if (!parts[6].equals("")) {
+                    String[] borrowedBooks = parts[6].split("\\),");
+                    for (int i = 0; i < borrowedBooks.length; i++) {
+                        borrowedBooks[i] = borrowedBooks[i].replace("(", "");
+                        for (int j = 0; j < 3; j++) {
+                            borrowedBooks[i] = borrowedBooks[i].replace(" ", "");
+                        }
+                        borrowedBooks[i] = borrowedBooks[i].replace(")", "");
+                    }
+                    for (String borrowedBook : borrowedBooks) {
+                        String[] bookParts = borrowedBook.split(",");
+                        Book book = new Book(bookParts[0], bookParts[1], bookParts[2], Date.fromStringtoDate(bookParts[3]), Integer.parseInt(bookParts[4]), Date.fromStringtoDate(bookParts[5]), bookParts[6], bookParts[7], bookParts[8]);
+                        borrowedBooksList.add(book);
+                    }
                 }
+
+                ArrayList<Book> lostBookArrayList = new ArrayList<>();
+                parts[7] = parts[7].replace("[", "").replace("]", "");
+                if (!parts[7].equals("")) {
+                    String[] lostBooks = parts[7].split("\\),");
+                    for (int i = 0; i < lostBooks.length; i++) {
+                        lostBooks[i] = lostBooks[i].replace("(", "");
+                        lostBooks[i] = lostBooks[i].replace(")", "");
+                    }
+                    for (String lostBook : lostBooks) {
+                        String[] bookParts = lostBook.split(",");
+                        Book book = new Book(bookParts[0], bookParts[1], bookParts[2], Date.fromStringtoDate(bookParts[3]), Integer.parseInt(bookParts[4]), Date.fromStringtoDate(bookParts[5]), bookParts[6], bookParts[7], bookParts[8]);
+                        lostBookArrayList.add(book);
+                    }
+                }
+
+                ArrayList<Book> returnedBookArrayList = new ArrayList<>();
+                parts[8] = parts[8].replace("[", "").replace("]", "");
+                if (!parts[8].equals("")) {
+                    String[] returnedBooks = parts[8].split("\\),");
+                    for (int i = 0; i < returnedBooks.length; i++) {
+                        returnedBooks[i] = returnedBooks[i].replace("(", "");
+                        returnedBooks[i] = returnedBooks[i].replace(")", "");
+                    }
+                    for (String returnedBook : returnedBooks) {
+                        String[] bookParts = returnedBook.split(",");
+                        Book book = new Book(bookParts[0], bookParts[1], bookParts[2], Date.fromStringtoDate(bookParts[3]), Integer.parseInt(bookParts[4]), Date.fromStringtoDate(bookParts[5]), bookParts[6], bookParts[7], bookParts[8]);
+                        returnedBookArrayList.add(book);
+                    }
+                }
+
+                Student student = new Student(parts[2], parts[0], parts[1], parts[3], Integer.parseInt(parts[4]), borrowedBooksList, lostBookArrayList, returnedBookArrayList, Integer.parseInt(parts[9]));
+
+                students.add(student);
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            br.close();
+            FileWriter writer = new FileWriter("Students.txt");
+            writer.write("");
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(e);
         }
+        return students;
     }
 
-    public void lostBook(int ISBN) {
-        String query = "select * from books inner join borrowed_books on borrowed_books.isbn = books.isbn where student_id = '" + getId() + "';";
-        ResultSet resultSet = Helper.executeQuery(query);
-        try {
-            if (!resultSet.isBeforeFirst()) {
-                System.out.println("That book isn't with you.");
-            } else {
-                resultSet.next();
-                query = "insert into lost_books (ISBN, Student_ID) values (" + ISBN + ", '" + getId() + "');";
-                Helper.executeUpdate(query);
-                query = "update student set Num_of_Borrowed_books = Num_of_Borrowed_books - 1 where id = '" + getId() + "';";
-                Helper.executeUpdate(query);
-                query = "delete from borrowed_books where student_id='" + getId() + "' and isbn = '" + ISBN + "';";
-                Helper.executeUpdate(query);
-                fines += Integer.parseInt(resultSet.getString("lost_fine"));
-                query = "update student set fines = " + fines + " where id='" + getId() + "';";
-                Helper.executeUpdate(query);
-                query = "insert into fines (ISBN, Student_ID, Fine_Type) values ('" + ISBN + "', '" + getId() + "', 'Lost The Book');";
-                Helper.executeUpdate(query);
-                borrowedBooks--;
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void showInfo() {
-        System.out.println("Name: " + getName());
-        System.out.println("ID: " + getId());
-        System.out.println("email: " + getEmail());
+    public void showInfo(){
+        System.out.println("Name: " + name);
+        System.out.println("ID: " + id);
+        System.out.println("email: " + email);
         System.out.println("Borrowed Books Numbers: " + borrowedBooks);
+    }
+
+    public String saveStyle() {
+        return email + "/" +
+                password + "/" +
+                name + "/" +
+                id + "/" +
+                borrowedBooks + "/" +
+                maximumNumberOfBooksBorrowed + "/" +
+                borrowedBooksList.toString() + "/" +
+                lostBookArrayList.toString() + "/" +
+                returnedBookArrayList.toString() + "/" +
+                fines + "\n";
     }
 
     @Override
     public String toString() {
-        return getName() + "," +
-                getId() + "," +
-                getEmail() + "," +
-                getPassword() + "," +
+        return name + "," +
+                id + "," +
+                email + "," +
+                password + "," +
                 borrowedBooks + "," +
                 maximumNumberOfBooksBorrowed + "," +
+                borrowedBooksList.toString() + "," +
+                lostBookArrayList.toString() + "," +
+                returnedBookArrayList.toString() + "," +
                 fines + "\n";
     }
 }

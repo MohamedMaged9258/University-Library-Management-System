@@ -73,7 +73,7 @@ public class LibraryGUI extends JFrame {
         this.borrowedBookArrayList = borrowedBookArrayList;
         this.student = new Student();
         this.librarian = new Librarian();
-//        this.library = new Library(studentArrayList, librarianArrayList, bookArrayList, lostBookArrayList, borrowedBookArrayList);
+        this.library = new Library(studentArrayList, librarianArrayList, bookArrayList, lostBookArrayList, borrowedBookArrayList);
 
         // Set up sign-in panel
         signInPanel = new JPanel(new BorderLayout());

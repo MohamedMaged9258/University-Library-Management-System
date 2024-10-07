@@ -1,0 +1,3 @@
+(C++ Programming,Bob Johnson,3443,20220101,4,00000000,,5,20)
+(Python Programming,Jane Smith,234,20200101,5,00000000,,5,15)
+(Java Programming,John Doe,12345,20210101,5,00000000,,5,30)

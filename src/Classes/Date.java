@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Date {
-    private final String year;
-    private final String month;
-    private final String day;
+    private String year;
+    private String month;
+    private String day;
 
     public Date(String year, String month, String day) {
         if (day.length() < 2) {
@@ -33,6 +33,19 @@ public class Date {
         return Integer.parseInt(day);
     }
 
+    //Setters
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
     //Methods
     public static Date enterDate() {
         Scanner scanner = new Scanner(System.in);
@@ -46,21 +59,35 @@ public class Date {
     }
 
     public static Date fromStringtoDate(String s) {
-        String[] temp = s.split("/");
-        String tempYear = temp[0];
-        String tempMonth = temp[1];
-        String tempDay = temp[2];
-        return new Date(tempYear, tempMonth, tempDay);
+        StringBuilder tempYear = new StringBuilder();
+        StringBuilder tempMonth = new StringBuilder();
+        StringBuilder tempDay = new StringBuilder();
+        for (int i = 0; i < 4; i++) {
+            tempYear.append(s.charAt(i));
+        }
+        for (int i = 4; i < 6; i++) {
+            tempMonth.append(s.charAt(i));
+        }
+        for (int i = 6; i < 8; i++) {
+            tempDay.append(s.charAt(i));
+        }
+        return new Date(tempYear.toString(), tempMonth.toString(), tempDay.toString());
     }
 
     public static Date setDueDate() {
+        // Get the current date
         LocalDate currentDate = LocalDate.now().plusDays(14);
 
+        // Get the day, month, and year
         int day = currentDate.getDayOfMonth();
         int month = currentDate.getMonthValue();
         int year = currentDate.getYear();
 
         return new Date(String.valueOf(year), String.valueOf(month), String.valueOf(day));
+    }
+
+    public static Date resetDueDate() {
+        return new Date("0000", "00", "00");
     }
 
     public static boolean brokeDueDate(Date dueDate) {
@@ -77,9 +104,7 @@ public class Date {
     }
 
     public String saveStyle() {
-        return year +
-                "/" + month +
-                "/" + day;
+        return year + month + day;
     }
 
     @Override

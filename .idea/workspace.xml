@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98210c6f-f49d-4794-94b2-425c94a3a513" name="Changes" comment="Version 1.5&#10;&#10;fixing a problem in showing the number of copies for a book" />
+    <list default="true" id="98210c6f-f49d-4794-94b2-425c94a3a513" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Books.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Books.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BorrowedBooks.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BorrowedBooks.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Staff.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Staff.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Students.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Students.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Date.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Library.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,14 +32,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <branch-grouping />
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="SIGN_OFF_COMMIT" value="true" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -43,22 +47,12 @@
       </UrlAndAccount>
     </option>
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/Main.java" root0="SKIP_INSPECTION" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
-  </component>
-  <component name="MigrationScriptOptions">
-    <option name="ignoreImplicitObjects" value="true" />
-    <option name="ignoreSourceCode" value="false" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 8
-}</component>
   <component name="ProjectId" id="2OfIoxcGa7xFODJwwoau1F5jQfd" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -66,57 +60,25 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Helper.executor": "Run",
-    "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "dart.analysis.tool.window.visible": "false",
-    "database.data.extractors.current.export.id": "Excel (xlsx)",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "Data__Base",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/moham/Downloads/Book1.csv",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/moham/GitHub/Java/University-Library-Management-System",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "show.migrate.to.gradle.popup": "false",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
-  },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
-    ]
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Codes\GitHub\University-Library-Management-System\src\DataBase\Connector_Jar" />
-      <recent name="D:\Codes\GitHub\University-Library-Management-System\src\DataBase" />
-    </key>
-  </component>
   <component name="RunManager" selected="Application.Main">
-    <configuration name="Helper" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="DataBase.Helper" />
-      <module name="University Library Management System" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="DataBase.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Main$LoginSignUpGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main$LoginSignUpGUI" />
       <module name="University Library Management System" />
@@ -134,20 +96,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Helper" />
-        <item itemvalue="Application.Main$LoginSignUpGUI" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main$LoginSignUpGUI" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -179,198 +130,21 @@
       <workItem from="1683193964456" duration="6690000" />
       <workItem from="1683202928891" duration="5470000" />
       <workItem from="1683806996274" duration="12162000" />
-      <workItem from="1724080596663" duration="6382000" />
-      <workItem from="1724089415276" duration="3447000" />
-      <workItem from="1724106337101" duration="5016000" />
-      <workItem from="1724175339300" duration="5433000" />
-      <workItem from="1724188582031" duration="7463000" />
-      <workItem from="1724247162894" duration="8804000" />
-      <workItem from="1724260622852" duration="1822000" />
-      <workItem from="1724350171639" duration="5625000" />
-      <workItem from="1724690540365" duration="3523000" />
-      <workItem from="1724715670104" duration="1521000" />
-      <workItem from="1724839446969" duration="14231000" />
-      <workItem from="1724959569008" duration="2981000" />
-      <workItem from="1725020777439" duration="2800000" />
-      <workItem from="1725127009401" duration="4145000" />
-      <workItem from="1725184248492" duration="7742000" />
     </task>
-    <task id="LOCAL-00001" summary="Updating How Librarian works with DataBase">
-      <option name="closed" value="true" />
-      <created>1724717759262</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1724717759262</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Updating How Librarian works with DataBase">
-      <option name="closed" value="true" />
-      <created>1724840706731</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1724840706731</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Version 1.1&#10;&#10;adding dataBase to the System">
-      <option name="closed" value="true" />
-      <created>1724855685139</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1724855685139</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Version 1.2&#10;&#10;fixing some bugs">
-      <option name="closed" value="true" />
-      <created>1724961464424</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1724961464424</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Version 1.3&#10;&#10;removing the return object methods,&#10;fixing some bugs">
-      <option name="closed" value="true" />
-      <created>1725023113666</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1725023113667</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Version 1.4&#10;&#10;fixing the fine calculator.">
-      <option name="closed" value="true" />
-      <created>1725132526142</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1725132526142</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Version 1.5&#10;&#10;fixing a problem in showing the number of copies for a book">
-      <option name="closed" value="true" />
-      <created>1725133604542</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1725133604542</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Version 1.5&#10;&#10;fixing a problem in showing the number of copies for a book">
-      <option name="closed" value="true" />
-      <created>1725192496785</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1725192496785</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ID_ORDER">
-      <list>
-        <option value="Default.Root" />
-        <option value="Default.Author" />
-        <option value="Default.Date" />
-        <option value="Default.Subject" />
-        <option value="GitHub.CommitStatus" />
-      </list>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="origin/Data_Base" />
-                </option>
-              </RecentGroup>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="7238ec8f-76ba-4af9-9a74-d3c15fabe568" value="TOOL_WINDOW" />
-      </map>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="origin/Data_Base" />
-                </option>
-              </RecentGroup>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
     <option name="TAB_STATES">
       <map>
-        <entry key="7238ec8f-76ba-4af9-9a74-d3c15fabe568">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="HEAD" />
-                      </list>
-                    </value>
-                  </entry>
-                  <entry key="structure">
-                    <value>
-                      <list>
-                        <option value="dir:D:/Codes/GitHub/University-Library-Management-System/src" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
-            </State>
-          </value>
-        </entry>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/Data_Base" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updating How Librarian works with DataBase" />
-    <MESSAGE value="Version 1.1&#10;&#10;adding dataBase to the System" />
-    <MESSAGE value="Version 1.2&#10;&#10;fixing some bugs" />
-    <MESSAGE value="Version 1.3&#10;&#10;removing the return object methods,&#10;fixing some bugs" />
-    <MESSAGE value="Version 1.4&#10;&#10;fixing the fine calculator." />
-    <MESSAGE value="Version 1.5&#10;&#10;fixing a problem in showing the number of copies for a book" />
-    <option name="LAST_COMMIT_MESSAGE" value="Version 1.5&#10;&#10;fixing a problem in showing the number of copies for a book" />
-    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>
